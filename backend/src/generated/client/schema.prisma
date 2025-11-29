@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  hoten       String?
+  email       String?  @unique
+  matkhau     String?
+  sodienthoai String?
+  diachi      String?
+  trangthai   String?
+  creatAT     DateTime @default(now())
+  updateAt    DateTime @default(now())
+  Role_id     Int
+
+  Role Role? @relation(fields: [Role_id], references: [id])
+
+  Lichtrinh Lichtrinh[]
+  Hoadon    Hoadon[]
+  Danhgia   Danhgia[]
+}
+
+model Role {
+  id      Int     @id @default(autoincrement())
+  tenrole String?
+
+  User User[]
+}
+
+model Lichtrinh {
+  id           Int      @id @default(autoincrement())
+  tenlichtrinh String?
+  ngaytao      DateTime @default(now())
+  ghichu       String?
+  User_id      Int
+
+  User        User?         @relation(fields: [User_id], references: [id])
+  Hoadon      Hoadon[]
+  LichtrinhCT LichtrinhCT[]
+  Danhgia     Danhgia[]
+}
+
+model LichtrinhCT {
+  id                Int       @id @default(autoincrement())
+  soluong           Int
+  thanhtien         Int
+  noikhoihanh       String?
+  ngaykhoihanh      DateTime?
+  lichtrinhdichuyen String?
+  Lichtrinh_id      Int
+  Goidichvu_id      Int
+
+  Lichtrinh Lichtrinh? @relation(fields: [Lichtrinh_id], references: [id])
+  Goidichvu Goidichvu? @relation(fields: [Goidichvu_id], references: [id])
+}
+
+model Goidichvu {
+  id            Int     @id @default(autoincrement())
+  tengoi        String?
+  mota          String?
+  gia           Int
+  thoiluongngay Int
+  trangthai     String?
+  hinhanh       String?
+  sochoconlai   Int?
+  Diadiem_id    Int
+
+  Diadiem     Diadiem?      @relation(fields: [Diadiem_id], references: [id])
+  LichtrinhCT LichtrinhCT[]
+}
+
+model Diadiem {
+  id         Int     @id @default(autoincrement())
+  tendiadiem String?
+  diachi     String?
+  mota       String?
+  hinhanh    String?
+
+  Goidichvu Goidichvu[]
+}
+
+model Danhgia {
+  id           Int     @id @default(autoincrement())
+  noidung      String?
+  User_id      Int
+  Lichtrinh_id Int
+
+  Lichtrinh Lichtrinh? @relation(fields: [Lichtrinh_id], references: [id])
+  User      User?      @relation(fields: [User_id], references: [id])
+}
+
+model Thanhtoan {
+  id            Int      @id @default(autoincrement())
+  phuongthuc    String?
+  sotien        Int
+  trangthai     String?
+  ngaythanhtoan DateTime @default(now())
+
+  Hoadon Hoadon[]
+}
+
+model Hoadon {
+  id           Int      @id @default(autoincrement())
+  ngayxuat     DateTime @default(now())
+  tongtien     Int
+  trangthai    String?
+  User_id      Int
+  Thanhtoan_id Int
+  Lichtrinh_id Int
+
+  User      User?      @relation(fields: [User_id], references: [id])
+  Thanhtoan Thanhtoan? @relation(fields: [Thanhtoan_id], references: [id])
+  Lichtrinh Lichtrinh? @relation(fields: [Lichtrinh_id], references: [id])
+}
