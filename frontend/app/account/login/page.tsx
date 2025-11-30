@@ -1,8 +1,87 @@
+"use client";
 // app/login/page.tsx
 import Link from "next/link";
 import { Mail, Lock, User, ArrowRight, Phone } from "lucide-react";
-
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Api from "../../Api/Api"
 export default function LoginPage() {
+  const router = useRouter();
+
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  //kiểm tra checkbox
+  const [accept, setAccept] = useState(false);
+  // Xử lý nhập input
+  function hasInput(e: React.ChangeEvent<HTMLInputElement>) {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInput((state) => ({ ...state, [name]: value }));
+  }
+
+  // Submit form
+  function hasFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    let errs: Record<string, string> = {};
+    let flag = true;
+
+    if (input.email == "") {
+      errs.email = "Email không được để trống";
+      flag = false;
+    }
+
+    if (input.password == "") {
+      errs.password = "Mật khẩu không được để trống";
+      flag = false;
+    }if (!accept) {
+      errs.accept = "Bạn phải đồng ý với điều khoản dịch vụ!";
+      flag = false;
+    }
+
+    if (!flag) {
+      setErrors(errs);
+      return;
+    }else{
+      const data = {
+        email: input.email,
+        matkhau: input.password,
+      }
+    // Gửi API login
+    Api.post("/user/login",data) 
+    .then((response: any) => {
+      if(response.data.errors){
+      // đưa data qua bên api rồi be nó kiểm tra
+      setErrors(response.data.errors);
+      }else{
+            console.log(response);
+
+            // Lưu token & user vào localStorage
+            localStorage.setItem("save", JSON.stringify(response.data));
+
+            alert("Đăng nhập thành công!");
+
+            const role = response.data.user?.Role_id;
+
+            // Nếu role === 3 => chuyển tới trang admin
+            if (role == 1) {
+              router.push("/admin");
+            } else if (role == 3) {
+              router.push("/");
+            }
+            }
+      })
+      .catch((err: any) => {
+        console.error(err);
+        setErrors({ login: "Email hoặc mật khẩu không đúng" });
+      });
+    }
+  }
+
   return (
     <>
       {/* Background video hoặc hình nền đẹp (tùy chọn) */}
@@ -32,8 +111,10 @@ export default function LoginPage() {
             <h2 className="text-3xl font-light text-white text-center mb-8 tracking-wide">
               Chào mừng trở lại
             </h2>
-
-            <form className="space-y-6">
+              {errors.login && (
+                <p className="text-red-400 text-sm -mt-3">{errors.login}</p>
+              )}
+            <form className="space-y-6" onSubmit={hasFormSubmit}>
               {/* Email */}
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-amber-400" />
@@ -41,8 +122,13 @@ export default function LoginPage() {
                   type="email"
                   placeholder="Email của bạn"
                   className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-300"
-                  required
+                  onChange={hasInput}
+                  name="email"
+                  value={input.email}
                 />
+                {errors.email && (
+                    <p className="text-red-400 text-sm mt-1"> {errors.email}</p>
+                  )}
               </div>
 
               {/* Mật khẩu */}
@@ -52,24 +138,34 @@ export default function LoginPage() {
                   type="password"
                   placeholder="Mật khẩu"
                   className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-300"
-                  required
+                  onChange={hasInput}
+                  name="password"
+                  value={input.password}
                 />
+                {errors.password && (
+                    <p className="text-red-400 text-sm mt-1"> {errors.password}</p>
+                  )}
               </div>
 
               {/* Nhớ mật khẩu & Quên mật khẩu */}
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center gap-2 text-gray-300 cursor-pointer">
-                  <input type="checkbox" className="w-4 h-4 rounded accent-amber-500" />
+                  <input type="checkbox" className="w-4 h-4 rounded accent-amber-500" checked={accept}
+                  onChange={(e) => setAccept(e.target.checked)}/>
                   <span>Nhớ mật khẩu</span>
                 </label>
+                
                 <Link
                   href="/forgot-password"
                   className="text-amber-400 hover:text-amber-300 transition"
                 >
                   Quên mật khẩu?
                 </Link>
+                
               </div>
-
+              {errors.accept && (
+                  <p className="text-red-400 text-sm mt-1"> {errors.accept}</p>
+                )}  
               {/* Nút Đăng nhập */}
               <button
                 type="submit"

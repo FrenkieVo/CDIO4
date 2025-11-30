@@ -37,7 +37,7 @@ const loginUser = async (req, res) => {
  const data = req.body;
   const checkLogin = await userModel.checkLoginUser(data);
   if(!checkLogin){
-   return res.status(400).json({ message: 'email hoac pass sai'});
+   return res.status(400).json({ errors: { login: "Email hoặc mật khẩu không đúng" }});
  } 
  const token = createJWT(checkLogin.id,checkLogin.email)
   res.json({ message: 'Đăng nhập thành công',token:token, user: checkLogin })

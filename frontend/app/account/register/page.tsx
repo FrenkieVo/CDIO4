@@ -1,8 +1,102 @@
+"use client";
 // app/register/page.tsx
 import Link from "next/link";
 import { Mail, Lock, User, ArrowRight, Phone, Check } from "lucide-react";
+import { useState } from "react";
+import Api from "../../Api/Api"
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+  const router = useRouter();
+  const [dangky,setdangky] = useState({
+    hoten:"",
+    email:"",
+    password:"",
+    confirmpassword:"",
+    role_id:""
+  })
+  const [errorsubmit, seterrorsubmit] = useState<Record<string, string>>({});
+  //kiểm tra checkbox
+  const [accept, setAccept] = useState(false);
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+
+  function hasInput(e: React.ChangeEvent<HTMLInputElement>) {
+    const nameInput = e.target.name;
+    const value = e.target.value;
+    setdangky(state => ({...state, [nameInput]: value}))
+  }
+
+  function hasFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    let errs: Record<string, string>  = {};
+    let flag = true;
+
+    if(dangky.hoten == ""){
+      errs.hoten = "họ tên không được để trống";
+      flag = false;
+    }
+    if(dangky.email == ""){
+      errs.email = "email không được để trống";
+      flag = false;
+    } else if(!emailRegex.test(dangky.email)){
+      errs.email = "email không đúng định dạng";
+      flag = false;
+    }
+
+    if(dangky.password == ""){
+      errs.matkhau = "mật khẩu không được để trống";
+      flag = false;
+    }
+    if(dangky.confirmpassword == ""){
+      errs.confirmpassword = "xác nhận mật khẩu không được để trống";
+      flag = false;
+    }else if(dangky.confirmpassword != dangky.password){
+      errs.confirmpassword = "xác nhận mật khẩu không khớp";
+      flag = false;
+    }
+    if (!accept) {
+      errs.accept = "Bạn phải đồng ý với điều khoản dịch vụ!";
+      flag = false;
+    }
+
+    if(!flag){
+      seterrorsubmit(errs);
+    }else{
+      const data ={
+        hoten: dangky.hoten,
+        email: dangky.email,
+        matkhau: dangky.password,
+        Role_id:3
+      }
+      console.log("data gửi đi",data);
+      Api.post('/user', data)
+      .then((response: any) => {
+        if (response.data.error) {
+          seterrorsubmit(response.data.error);
+        } else {
+          console.log("đăng ký thành công", response.data);
+          alert("Đăng ký thành công");
+          router.push("/account/login");
+        }
+      })  // ← dấu đóng .then() nằm ở đây
+      .catch((err: any) => {
+        console.error(err);
+        alert("Lỗi server!");
+      });
+    }
+  }
+//   function renderError(){
+//         if(Object.keys(errorsubmit).length > 0){
+//             return Object.keys(errorsubmit).map((key,index) =>{
+//                 return(
+//                     <li key={index}>{errorsubmit[key]}</li>
+//                 )
+//             })
+//         }
+//  }
+
   return (
     <>
       {/* Background giống hệt trang Login */}
@@ -32,50 +126,74 @@ export default function RegisterPage() {
             <h2 className="text-3xl font-light text-white text-center mb-8 tracking-wide">
               Đăng ký tài khoản mới
             </h2>
-
-            <form className="space-y-6">
+            {/* {renderError()} */}
+            <form className="space-y-6" onSubmit={hasFormSubmit} >
               {/* Họ và tên */}
               <div className="relative">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-amber-amber-400" />
                 <input
+                  name="hoten"
+                  onChange={hasInput}
+                  value={dangky.hoten}
                   type="text"
                   placeholder="Họ và tên"
                   className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-300"
-                  required
+                
                 />
+                {errorsubmit.hoten && (
+                    <p className="text-red-400 text-sm mt-1">⚠️ {errorsubmit.hoten}</p>
+                  )}
               </div>
 
               {/* Email */}
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-amber-400" />
                 <input
+                  name="email"
+                  onChange={hasInput}
+                  value={dangky.email}
                   type="email"
                   placeholder="Email của bạn"
                   className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-300"
-                  required
+                 
                 />
+                  {errorsubmit.email && (
+                    <p className="text-red-400 text-sm mt-1">⚠️ {errorsubmit.email}</p>
+                  )}
               </div>
 
               {/* Mật khẩu */}
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-amber-400" />
                 <input
+                  name="password"
+                  onChange={hasInput}
+                  value={dangky.password}
                   type="password"
                   placeholder="Mật khẩu"
                   className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-300"
-                  required
+                
                 />
+                {errorsubmit.matkhau && (
+                    <p className="text-red-400 text-sm mt-1">⚠️ {errorsubmit.matkhau}</p>
+                  )}
               </div>
 
               {/* Xác nhận mật khẩu */}
               <div className="relative">
                 <Check className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-amber-400" />
                 <input
+                  name="confirmpassword"
+                  onChange={hasInput}
+                  value={dangky.confirmpassword}
                   type="password"
                   placeholder="Xác nhận mật khẩu"
                   className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 transition-all duration-300"
-                  required
+            
                 />
+                {errorsubmit.confirmpassword && (
+                    <p className="text-red-400 text-sm mt-1">⚠️ {errorsubmit.confirmpassword}</p>
+                  )}
               </div>
 
               {/* Checkbox điều khoản */}
@@ -83,7 +201,8 @@ export default function RegisterPage() {
                 <input
                   type="checkbox"
                   className="mt-1 w-4 h-4 rounded accent-amber-500"
-                  required
+                  checked={accept}
+                  onChange={(e) => setAccept(e.target.checked)}
                 />
                 <span>
                   Tôi đồng ý với{" "}
@@ -96,6 +215,10 @@ export default function RegisterPage() {
                   </Link>
                 </span>
               </label>
+                {errorsubmit.accept && (
+                  <p className="text-red-400 text-sm mt-1"> {errorsubmit.accept}</p>
+                )}
+
 
               {/* Nút Đăng ký */}
               <button
