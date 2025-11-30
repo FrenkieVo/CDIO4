@@ -6,7 +6,8 @@ const diadiemController = require('../Controllers/diadiemController');
 const goiDichVuController = require('../Controllers/goidichvuController');
 const lichtrinhController = require('../Controllers/lichtrinhController');
 const lichtrinhCTController = require('../Controllers/lichtrinhCTController');
-
+const thanhtoanController = require('../Controllers/thanhtoanController');
+const hoadonController = require('../Controllers/hoadonController');
 //role 
 //tạo vai trò
 router.post('/role',roleController.createRole);
@@ -72,4 +73,24 @@ router.get('/lichtrinhct/:id',lichtrinhCTController.getLichTrinhCTById);
 router.put('/lichtrinhct/:id',lichtrinhCTController.updateLichTrinhCT);
 //xóa lịch trình chi tiết
 router.delete('/lichtrinhct/:id',lichtrinhCTController.deleteLichTrinhCT);
+
+//thanh toán
+//tạo thông tin thanh toán
+router.post('/thanhtoan',thanhtoanController.createThanhToan);
+//lấy thông tin thanh toán theo id
+router.get('/thanhtoan/:id',thanhtoanController.getThanhToanById);
+//sửa thông tin thanh toán
+router.put('/thanhtoan/:id',thanhtoanController.updateThanhToan);
+//xóa thông tin thanh toán
+router.delete('/thanhtoan/:id',thanhtoanController.deleteThanhToan);
+
+//hóa đơn
+//tạo hóa đơn
+router.post('/hoadon',hoadonController.createHoaDon);
+//lấy hóa đơn theo id
+router.get('/hoadon/:id',hoadonController.getHoaDonById);
+//cập nhật hóa đơn
+router.put('/hoadon/:id',hoadonController.updateHoaDon);
+//xóa hóa đơn
+router.delete('/hoadon/:id',hoadonController.deleteHoaDon);
 module.exports = router;
