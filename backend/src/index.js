@@ -3,6 +3,7 @@ const { PrismaClient } = require('./generated/client');
 const app = express();
 const prisma = new PrismaClient();
 const cors = require("cors");
+const path = require("path");
 
 //   Xử lý JSON data
 app.use(express.json());
@@ -16,6 +17,9 @@ app.use(cors({
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 	credentials: true
 }));
+
+// Public thư mục UPLOADS cho FE truy cập
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.use('/api', require('./router/api'));
 

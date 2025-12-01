@@ -19,9 +19,10 @@ const getDiaDiem = async () => {
     return await prisma.diadiem.findMany({
         //lấy những trường hiện ra
         select:{
+            id           : true,
             tendiadiem   : true,
             mota         : true,
-            vitri        : true,
+            diachi        : true,
             hinhanh     : true
         }
     })

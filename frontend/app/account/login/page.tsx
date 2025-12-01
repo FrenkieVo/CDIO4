@@ -61,7 +61,7 @@ export default function LoginPage() {
             console.log(response);
 
             // Lưu token & user vào localStorage
-            localStorage.setItem("save", JSON.stringify(response.data));
+            sessionStorage.setItem("save", JSON.stringify(response.data));
 
             alert("Đăng nhập thành công!");
 

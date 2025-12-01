@@ -61,7 +61,7 @@ model Goidichvu {
     tengoi              String?
     mota                String?
     gia                 Int
-    thoiluongngay       Int
+    thoiluongngay       String?
     trangthai           String?
     hinhanh             String?
     sochoconlai         Int?

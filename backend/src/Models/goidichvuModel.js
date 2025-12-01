@@ -9,7 +9,11 @@ const createGoiDichVu = async (data) => {
 
 //lấy tất cả gói dịch vụ
 const getAllGoiDichVu = async () => {
-    return await prisma.goidichvu.findMany();
+    return await prisma.goidichvu.findMany({
+        include: {
+            Diadiem: true   // ← JOIN bảng địa điểm
+        }
+    });   
 }
 
 //lấy gói dịch vụ theo id

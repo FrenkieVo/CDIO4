@@ -26,8 +26,7 @@ const createGoiDichVu = async (req, res) => {
     const avatarFiles = req.files;
 
     data.gia = parseInt(data.gia) * 1000;
-    data.thoiluongngay = parseInt(data.thoiluongngay);
-    data.sochoconlai = parseInt(data.sochoconlai);
+    data.thoiluongngay = data.thoiluongngay;
     data.Diadiem_id = parseInt(data.Diadiem_id);
     data.hinhanh = avatarFiles ? avatarFiles.map(file => file.path.replace(/\\/g, '/')) : [];
     data.hinhanh = JSON.stringify(data.hinhanh)
@@ -51,14 +50,20 @@ const getAllGoiDichVu = async (req, res) => {
 //lấy gói dịch vụ theo id
 const getGoiDichVuById = async (req, res) => {
     const id = req.params.id;
-    const goiDichVu = await goiDichVuModel.getGoiDichVuById(id);
-    // format giá từng item
-    const newgoiDichVus = goiDichVu.map(item => ({
-        ...item,
-        giaFormat: item.gia.toLocaleString('vi-VN') + 'đ'
-    }));
-    res.status(200).json(newgoiDichVus);
-}
+    const data = await goiDichVuModel.getGoiDichVuById(id);
+
+    if (!data) {
+        return res.status(404).json({ message: "Không tìm thấy gói dịch vụ" });
+    }
+
+    const newData = {
+        ...data,
+        giaFormat: data.gia.toLocaleString("vi-VN") + "đ"
+    };
+
+    res.status(200).json(newData);
+};
+
 
 //sửa gói dịch vụ
 const updateGoiDichVu = async (req, res) => {
@@ -73,13 +78,19 @@ const updateGoiDichVu = async (req, res) => {
     if (data.gia) {
         data.gia = parseInt(data.gia) * 1000;
     }
+    data.thoiluongngay = data.thoiluongngay;
+    if (data.Diadiem_id) {
+        data.Diadiem_id = parseInt(data.Diadiem_id);
+    }
     const goiDichVu = await goiDichVuModel.updateGoiDichVu(id, data);
-    // format tiền VND
-    const newgoiDichVu = {
-        ...goiDichVu,
-        giaFormat: updated.gia.toLocaleString('vi-VN') + 'đ'
+    const updated = await goiDichVuModel.updateGoiDichVu(id, data);
+    
+    const newData = {
+        ...updated,
+        giaFormat: updated.gia.toLocaleString("vi-VN") + "đ"
     };
-    res.status(200).json(newgoiDichVu);
+
+    res.status(200).json(newData);
 }
 
 //xóa gói dịch vụ

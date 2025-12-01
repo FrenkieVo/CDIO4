@@ -5834,7 +5834,6 @@ export namespace Prisma {
   export type GoidichvuAvgAggregateOutputType = {
     id: number | null
     gia: number | null
-    thoiluongngay: number | null
     sochoconlai: number | null
     Diadiem_id: number | null
   }
@@ -5842,7 +5841,6 @@ export namespace Prisma {
   export type GoidichvuSumAggregateOutputType = {
     id: number | null
     gia: number | null
-    thoiluongngay: number | null
     sochoconlai: number | null
     Diadiem_id: number | null
   }
@@ -5852,7 +5850,7 @@ export namespace Prisma {
     tengoi: string | null
     mota: string | null
     gia: number | null
-    thoiluongngay: number | null
+    thoiluongngay: string | null
     trangthai: string | null
     hinhanh: string | null
     sochoconlai: number | null
@@ -5864,7 +5862,7 @@ export namespace Prisma {
     tengoi: string | null
     mota: string | null
     gia: number | null
-    thoiluongngay: number | null
+    thoiluongngay: string | null
     trangthai: string | null
     hinhanh: string | null
     sochoconlai: number | null
@@ -5888,7 +5886,6 @@ export namespace Prisma {
   export type GoidichvuAvgAggregateInputType = {
     id?: true
     gia?: true
-    thoiluongngay?: true
     sochoconlai?: true
     Diadiem_id?: true
   }
@@ -5896,7 +5893,6 @@ export namespace Prisma {
   export type GoidichvuSumAggregateInputType = {
     id?: true
     gia?: true
-    thoiluongngay?: true
     sochoconlai?: true
     Diadiem_id?: true
   }
@@ -6029,7 +6025,7 @@ export namespace Prisma {
     tengoi: string | null
     mota: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay: string | null
     trangthai: string | null
     hinhanh: string | null
     sochoconlai: number | null
@@ -6100,7 +6096,7 @@ export namespace Prisma {
       tengoi: string | null
       mota: string | null
       gia: number
-      thoiluongngay: number
+      thoiluongngay: string | null
       trangthai: string | null
       hinhanh: string | null
       sochoconlai: number | null
@@ -6505,7 +6501,7 @@ export namespace Prisma {
     readonly tengoi: FieldRef<"Goidichvu", 'String'>
     readonly mota: FieldRef<"Goidichvu", 'String'>
     readonly gia: FieldRef<"Goidichvu", 'Int'>
-    readonly thoiluongngay: FieldRef<"Goidichvu", 'Int'>
+    readonly thoiluongngay: FieldRef<"Goidichvu", 'String'>
     readonly trangthai: FieldRef<"Goidichvu", 'String'>
     readonly hinhanh: FieldRef<"Goidichvu", 'String'>
     readonly sochoconlai: FieldRef<"Goidichvu", 'Int'>
@@ -11236,7 +11232,7 @@ export namespace Prisma {
     tengoi?: StringNullableFilter<"Goidichvu"> | string | null
     mota?: StringNullableFilter<"Goidichvu"> | string | null
     gia?: IntFilter<"Goidichvu"> | number
-    thoiluongngay?: IntFilter<"Goidichvu"> | number
+    thoiluongngay?: StringNullableFilter<"Goidichvu"> | string | null
     trangthai?: StringNullableFilter<"Goidichvu"> | string | null
     hinhanh?: StringNullableFilter<"Goidichvu"> | string | null
     sochoconlai?: IntNullableFilter<"Goidichvu"> | number | null
@@ -11250,7 +11246,7 @@ export namespace Prisma {
     tengoi?: SortOrderInput | SortOrder
     mota?: SortOrderInput | SortOrder
     gia?: SortOrder
-    thoiluongngay?: SortOrder
+    thoiluongngay?: SortOrderInput | SortOrder
     trangthai?: SortOrderInput | SortOrder
     hinhanh?: SortOrderInput | SortOrder
     sochoconlai?: SortOrderInput | SortOrder
@@ -11267,7 +11263,7 @@ export namespace Prisma {
     tengoi?: StringNullableFilter<"Goidichvu"> | string | null
     mota?: StringNullableFilter<"Goidichvu"> | string | null
     gia?: IntFilter<"Goidichvu"> | number
-    thoiluongngay?: IntFilter<"Goidichvu"> | number
+    thoiluongngay?: StringNullableFilter<"Goidichvu"> | string | null
     trangthai?: StringNullableFilter<"Goidichvu"> | string | null
     hinhanh?: StringNullableFilter<"Goidichvu"> | string | null
     sochoconlai?: IntNullableFilter<"Goidichvu"> | number | null
@@ -11281,7 +11277,7 @@ export namespace Prisma {
     tengoi?: SortOrderInput | SortOrder
     mota?: SortOrderInput | SortOrder
     gia?: SortOrder
-    thoiluongngay?: SortOrder
+    thoiluongngay?: SortOrderInput | SortOrder
     trangthai?: SortOrderInput | SortOrder
     hinhanh?: SortOrderInput | SortOrder
     sochoconlai?: SortOrderInput | SortOrder
@@ -11301,7 +11297,7 @@ export namespace Prisma {
     tengoi?: StringNullableWithAggregatesFilter<"Goidichvu"> | string | null
     mota?: StringNullableWithAggregatesFilter<"Goidichvu"> | string | null
     gia?: IntWithAggregatesFilter<"Goidichvu"> | number
-    thoiluongngay?: IntWithAggregatesFilter<"Goidichvu"> | number
+    thoiluongngay?: StringNullableWithAggregatesFilter<"Goidichvu"> | string | null
     trangthai?: StringNullableWithAggregatesFilter<"Goidichvu"> | string | null
     hinhanh?: StringNullableWithAggregatesFilter<"Goidichvu"> | string | null
     sochoconlai?: IntNullableWithAggregatesFilter<"Goidichvu"> | number | null
@@ -11825,7 +11821,7 @@ export namespace Prisma {
     tengoi?: string | null
     mota?: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay?: string | null
     trangthai?: string | null
     hinhanh?: string | null
     sochoconlai?: number | null
@@ -11838,7 +11834,7 @@ export namespace Prisma {
     tengoi?: string | null
     mota?: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay?: string | null
     trangthai?: string | null
     hinhanh?: string | null
     sochoconlai?: number | null
@@ -11850,7 +11846,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11863,7 +11859,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11876,7 +11872,7 @@ export namespace Prisma {
     tengoi?: string | null
     mota?: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay?: string | null
     trangthai?: string | null
     hinhanh?: string | null
     sochoconlai?: number | null
@@ -11887,7 +11883,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11898,7 +11894,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12496,7 +12492,6 @@ export namespace Prisma {
   export type GoidichvuAvgOrderByAggregateInput = {
     id?: SortOrder
     gia?: SortOrder
-    thoiluongngay?: SortOrder
     sochoconlai?: SortOrder
     Diadiem_id?: SortOrder
   }
@@ -12528,7 +12523,6 @@ export namespace Prisma {
   export type GoidichvuSumOrderByAggregateInput = {
     id?: SortOrder
     gia?: SortOrder
-    thoiluongngay?: SortOrder
     sochoconlai?: SortOrder
     Diadiem_id?: SortOrder
   }
@@ -13979,7 +13973,7 @@ export namespace Prisma {
     tengoi?: string | null
     mota?: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay?: string | null
     trangthai?: string | null
     hinhanh?: string | null
     sochoconlai?: number | null
@@ -13991,7 +13985,7 @@ export namespace Prisma {
     tengoi?: string | null
     mota?: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay?: string | null
     trangthai?: string | null
     hinhanh?: string | null
     sochoconlai?: number | null
@@ -14048,7 +14042,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
@@ -14060,7 +14054,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
@@ -14162,7 +14156,7 @@ export namespace Prisma {
     tengoi?: string | null
     mota?: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay?: string | null
     trangthai?: string | null
     hinhanh?: string | null
     sochoconlai?: number | null
@@ -14174,7 +14168,7 @@ export namespace Prisma {
     tengoi?: string | null
     mota?: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay?: string | null
     trangthai?: string | null
     hinhanh?: string | null
     sochoconlai?: number | null
@@ -14215,7 +14209,7 @@ export namespace Prisma {
     tengoi?: StringNullableFilter<"Goidichvu"> | string | null
     mota?: StringNullableFilter<"Goidichvu"> | string | null
     gia?: IntFilter<"Goidichvu"> | number
-    thoiluongngay?: IntFilter<"Goidichvu"> | number
+    thoiluongngay?: StringNullableFilter<"Goidichvu"> | string | null
     trangthai?: StringNullableFilter<"Goidichvu"> | string | null
     hinhanh?: StringNullableFilter<"Goidichvu"> | string | null
     sochoconlai?: IntNullableFilter<"Goidichvu"> | number | null
@@ -14852,7 +14846,7 @@ export namespace Prisma {
     tengoi?: string | null
     mota?: string | null
     gia: number
-    thoiluongngay: number
+    thoiluongngay?: string | null
     trangthai?: string | null
     hinhanh?: string | null
     sochoconlai?: number | null
@@ -14862,7 +14856,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
@@ -14874,7 +14868,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
@@ -14886,7 +14880,7 @@ export namespace Prisma {
     tengoi?: NullableStringFieldUpdateOperationsInput | string | null
     mota?: NullableStringFieldUpdateOperationsInput | string | null
     gia?: IntFieldUpdateOperationsInput | number
-    thoiluongngay?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
