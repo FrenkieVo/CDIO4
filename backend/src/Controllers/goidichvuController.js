@@ -30,6 +30,7 @@ const createGoiDichVu = async (req, res) => {
     data.Diadiem_id = parseInt(data.Diadiem_id);
     data.hinhanh = avatarFiles ? avatarFiles.map(file => file.path.replace(/\\/g, '/')) : [];
     data.hinhanh = JSON.stringify(data.hinhanh)
+    data.sochoconlai = parseInt(data.sochoconlai);
 
     const goiDichVu = await goiDichVuModel.createGoiDichVu(data);
     res.status(201).json(goiDichVu);
@@ -82,7 +83,9 @@ const updateGoiDichVu = async (req, res) => {
     if (data.Diadiem_id) {
         data.Diadiem_id = parseInt(data.Diadiem_id);
     }
-    const goiDichVu = await goiDichVuModel.updateGoiDichVu(id, data);
+    if (data.sochoconlai) {
+    data.sochoconlai = parseInt(data.sochoconlai);
+    }
     const updated = await goiDichVuModel.updateGoiDichVu(id, data);
     
     const newData = {

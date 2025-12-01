@@ -22,6 +22,9 @@ type FormState = {
   Diadiem_id: string;
   hinhanh: FileList | null;
   oldhinhanh: string;
+  mota: string;          
+  trangthai: string;    
+  sochoconlai: string;
 };
 
 export default function EditGoiDichVu() {
@@ -39,6 +42,9 @@ export default function EditGoiDichVu() {
     Diadiem_id: "",
     hinhanh: null,
     oldhinhanh: "",
+    mota: "",          
+    trangthai: "",    
+    sochoconlai: ""
   });
 
   // Load địa điểm
@@ -61,12 +67,15 @@ export default function EditGoiDichVu() {
           Diadiem_id: d.Diadiem_id,
           hinhanh: null,
           oldhinhanh: d.hinhanh,
+          mota: d.mota || "",               
+          trangthai: d.trangthai || "",     
+          sochoconlai: d.sochoconlai || "",
         });
       })
       .catch((err:any) => console.error("Lỗi load gói:", err));
   }, [id]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -91,6 +100,9 @@ export default function EditGoiDichVu() {
     formdata.append("gia", form.gia);
     formdata.append("thoiluongngay", form.thoiluongngay);
     formdata.append("Diadiem_id", form.Diadiem_id);
+    formdata.append("mota", form.mota);               
+    formdata.append("trangthai", form.trangthai);      
+    formdata.append("sochoconlai", form.sochoconlai);
 
     if (form.hinhanh) {
       for (const file of form.hinhanh) {
@@ -132,102 +144,163 @@ export default function EditGoiDichVu() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
 
-            {/* Tên gói */}
-            <div>
-              <label className="font-semibold text-gray-800">Tên gói dịch vụ</label>
-              <input
-                name="tengoi"
-                value={form.tengoi}
-                onChange={handleChange}
-                className="w-full p-3 bg-white/90 border border-gray-300 rounded-lg text-gray-900 shadow-sm"
-              />
-            </div>
+          {/* GRID 2 CỘT */}
+          <div className="grid grid-cols-2 gap-6">
 
-            {/* Ảnh cũ */}
-            {form.oldhinhanh && (
+            {/* CỘT TRÁI */}
+            <div className="space-y-5">
+
+              {/* Tên gói */}
               <div>
-                <p className="font-semibold text-gray-700 mb-1">Ảnh hiện tại</p>
-                <img
-                  src={`http://localhost:3000/${JSON.parse(form.oldhinhanh)[0]}`}
-                  className="w-40 rounded-lg shadow-md"
+                <label className="font-semibold">Tên gói dịch vụ</label>
+                <input
+                  name="tengoi"
+                  value={form.tengoi}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-white/90 border rounded-lg"
+                  required
                 />
               </div>
-            )}
 
-            {/* Upload ảnh mới */}
-            <div>
-              <label className="font-semibold text-gray-800">Chọn ảnh mới (nếu muốn)</label>
-              <input
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={handleFileChange}
-                className="w-full p-3 bg-white/90 border border-gray-300 rounded-lg shadow-sm"
-              />
+              {/* Ảnh hiện tại */}
+              {form.oldhinhanh && (
+                <div>
+                  <label className="font-semibold">Ảnh hiện tại</label>
+                  <img
+                    src={`http://localhost:3000/${JSON.parse(form.oldhinhanh)[0]}`}
+                    className="w-40 rounded-lg shadow-md mt-2"
+
+                  />
+                </div>
+              )}
+
+              {/* Ảnh mới */}
+              <div>
+                <label className="font-semibold">Chọn ảnh mới (nếu muốn)</label>
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="w-full p-3 bg-white/90 border rounded-lg file:bg-teal-500 file:text-white"
+                />
+              </div>
+
+              {/* Giá */}
+              <div>
+                <label className="font-semibold">Giá tour</label>
+                <input
+                  name="gia"
+                  type="number"
+                  value={form.gia}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-white/90 border rounded-lg"
+                  required
+                />
+              </div>
+
             </div>
 
-            {/* Giá */}
-            <div>
-              <label className="font-semibold text-gray-800">Giá tour</label>
-              <input
-                name="gia"
-                type="number"
-                value={form.gia}
-                onChange={handleChange}
-                className="w-full p-3 bg-white/90 border rounded-lg shadow-sm"
-              />
+            {/* CỘT PHẢI */}
+            <div className="space-y-5">
+
+              {/* Thời lượng */}
+              <div>
+                <label className="font-semibold">Thời lượng (ngày)</label>
+                <input
+                  name="thoiluongngay"
+                  value={form.thoiluongngay}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-white/90 border rounded-lg"
+                  required
+                />
+              </div>
+
+              {/* Trạng thái */}
+              <div>
+                <label className="font-semibold">Trạng thái</label>
+                <select
+                  name="trangthai"
+                  value={form.trangthai}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-white/90 border rounded-lg"
+                  required
+                >
+                  <option value="">-- Chọn trạng thái --</option>
+                  <option value="active">Đang hoạt động</option>
+                  <option value="inactive">Ngừng hoạt động</option>
+                  <option value="soldout">Hết chỗ</option>
+                </select>
+              </div>
+
+              {/* Số chỗ */}
+              <div>
+                <label className="font-semibold">Số chỗ còn lại</label>
+                <input
+                  name="sochoconlai"
+                  type="number"
+                  value={form.sochoconlai}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-white/90 border rounded-lg"
+                  required
+                />
+              </div>
+
+              {/* Địa điểm */}
+              <div>
+                <label className="font-semibold">Địa điểm</label>
+                <select
+                  name="Diadiem_id"
+                  value={form.Diadiem_id}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-white/90 border rounded-lg"
+                  required
+                >
+                  <option value="">-- Chọn địa điểm --</option>
+                  {diadiems.map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {d.tendiadiem}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
             </div>
 
-            {/* Thời lượng */}
-            <div>
-              <label className="font-semibold text-gray-800">Thời lượng (ngày)</label>
-              <input
-                name="thoiluongngay"
-                type="text"
-                value={form.thoiluongngay}
-                onChange={handleChange}
-                className="w-full p-3 bg-white/90 border rounded-lg shadow-sm"
-              />
-            </div>
+          </div>
 
-            {/* Địa điểm */}
-            <div>
-              <label className="font-semibold text-gray-800">Địa điểm</label>
-              <select
-                name="Diadiem_id"
-                value={form.Diadiem_id}
-                onChange={handleChange}
-                className="w-full p-3 bg-white/90 border border-gray-300 rounded-lg"
-              >
-                <option value="">-- Chọn địa điểm --</option>
+          {/* MÔ TẢ – FULL WIDTH */}
+          <div>
+            <label className="font-semibold">Mô tả</label>
+            <textarea
+              name="mota"
+              rows={4}
+              value={form.mota}
+              onChange={handleChange}
+              className="w-full p-3 bg-white/90 border rounded-lg"
+              required
+            />
+          </div>
 
-                {diadiems.map((d, i) => (
-                  <option key={i} value={d.id}>
-                    {d.tendiadiem}
-                  </option>
-                ))}
-              </select>
-            </div>
+          {/* BUTTON */}
+          <div className="pt-4 flex gap-3">
+            <button
+              type="button"
+              onClick={() => router.push("/admin/bookings")}
+              className="flex-1 py-3 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300"
+            >
+              Hủy
+            </button>
 
-            {/* Nút */}
-            <div className="pt-4 flex gap-3">
-              <button
-                type="button"
-                onClick={() => router.push("/admin/bookings")}
-                className="flex-1 py-3 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 shadow-sm"
-              >
-                Hủy
-              </button>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="flex-1 py-3 rounded-lg bg-gradient-to-r from-teal-500 to-blue-500 text-white font-semibold shadow-md hover:opacity-90"
-              >
-                {loading ? "Đang lưu..." : "Lưu thay đổi"}
-              </button>
-            </div>
-
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex-1 py-3 rounded-lg bg-gradient-to-r from-teal-500 to-blue-500 text-white"
+            >
+              {loading ? "Đang lưu..." : "Lưu thay đổi"}
+            </button>
+          </div>
+          
           </form>
         </div>
       </div>

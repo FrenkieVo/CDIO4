@@ -11,8 +11,19 @@ import { Plus, Trash2, X } from "lucide-react";
 export default function PlanPage() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [myPlan, setMyPlan] = useState<string[]>([]);
+  const [allPackages, setAllPackages] = useState<any[]>([]);
 
-  // Danh sách địa điểm + ảnh thật
+  // Map button ID → Tên địa điểm trong DB
+  const locationMap: any = {
+    "bana-hills": "Bà Nà Hills",
+    "hoi-an": "Phố cổ Hội An",
+    "son-tra": "Bán đảo Sơn Trà",
+    "ngu-hanh-son": "Ngũ Hành Sơn",
+    "my-son": "Thánh địa Mỹ Sơn",
+    "bien-my-khe": "Biển Mỹ Khê",
+  };
+
+  // Danh sách địa điểm FE
   const locations = [
     { id: "bana-hills", name: "Bà Nà Hills", image: "/IS2.jpg" },
     { id: "hoi-an", name: "Phố cổ Hội An", image: "/IS1.jpg" },
@@ -22,99 +33,58 @@ export default function PlanPage() {
     { id: "bien-my-khe", name: "Biển Mỹ Khê", image: "/Mykhe.jpg" },
   ];
 
-  // TẤT CẢ các gói dịch vụ (hiển thị hết ngay từ đầu)
-    const allPackages = [
-    { 
-        id: "bana-hills", 
-        name: "Bà Nà Hills – Cầu Vàng 1 Ngày", 
-        price: "1.290.000đ", 
-        duration: "1 ngày", 
-        spots: "Cầu Vàng, Fantasy Park", 
-        hot: true,
-        image: "/IS2.jpg",
-        location: "bana-hills"
-    },
-    { 
-        id: "hoian-dem", 
-        name: "Hội An về đêm – Thả đèn hoa đăng", 
-        price: "790.000đ", 
-        duration: "1/2 ngày", 
-        spots: "Phố cổ, Chùa Cầu", 
-        hot: true,
-        image: "/IS1.jpg",
-        location: "hoi-an"
-    },
-    { 
-        id: "danang-city", 
-        name: "City Tour Đà Nẵng – Ngũ Hành Sơn", 
-        price: "890.000đ", 
-        duration: "1 ngày", 
-        spots: "Biển Mỹ Khê, Chùa Linh Ứng", 
-        hot: false,
-        image: "/HLS4.jpg",
-        location: "ngu-hanh-son"
-    },
-    { 
-        id: "hue-1ngay", 
-        name: "Đại Nội Huế – Đà Nẵng 1 Ngày", 
-        price: "1.490.000đ", 
-        duration: "1 ngày", 
-        spots: "Kinh thành Huế, Sông Hương", 
-        hot: true,
-        image: "/HLS3.jpg",
-        location: "hue"
-    },
-    { 
-        id: "hoian-bana", 
-        name: "Hội An + Bà Nà Hills 2N1Đ", 
-        price: "3.990.000đ", 
-        duration: "2 ngày 1 đêm", 
-        spots: "Combo hoàn hảo", 
-        hot: false,
-        image: "/HLS5.jpg",
-        location: "bana-hills"
-    },
-    { 
-        id: "my-son", 
-        name: "Thánh địa Mỹ Sơn – Hội An", 
-        price: "1.150.000đ", 
-        duration: "1 ngày", 
-        spots: "Di sản UNESCO", 
-        hot: false,
-        image: "/IS3.jpg",
-        location: "my-son"
-    },
-    ];
+  // Hàm convert thời lượng, dùng lại như trang list
+  function formatDuration(str: string): string {
+    if (!str) return "";
 
-  // Lọc theo địa điểm được chọn
+    let normalized = str;
+
+    if (/^\d+n\d+$/.test(str)) normalized = str + "d";
+    if (/^\d+n$/.test(str)) return str.replace("n", "") + " ngày";
+    if (/^\d+$/.test(str)) return str + " ngày";
+
+    const match = normalized.match(/(\d+)n(\d+)d/);
+    if (match) {
+      const days = match[1];
+      const nights = match[2];
+      return `${days} ngày ${nights} đêm`;
+    }
+
+    return str;
+  }
+  // LẤY GÓI DỊCH VỤ từ backend
+  useEffect(() => {
+    fetch("http://localhost:3000/api/goidichvu")
+      .then((res) => res.json())
+      .then((data) => setAllPackages(data))
+      .catch((err) => console.error("Lỗi tải gói dịch vụ:", err));
+  }, []);
+
+  
+  // Lọc theo địa điểm
   const displayedPackages = selectedLocation
-    ? allPackages.filter(pkg => pkg.location === selectedLocation)
+    ? allPackages.filter(
+        (pkg) =>
+          pkg.Diadiem &&
+          pkg.Diadiem.tendiadiem === locationMap[selectedLocation]
+      )
     : allPackages;
 
-  // Load lịch trình từ localStorage
+  // Load plan
   useEffect(() => {
     const saved = localStorage.getItem("myTravelPlan");
     if (saved) {
-      const planIds = JSON.parse(saved).map((p: any) => p.id);
-      setMyPlan(planIds);
+      setMyPlan(JSON.parse(saved).map((p: any) => p.id));
     }
   }, []);
 
   const togglePlan = (pkg: any) => {
-    let updatedPlan: any[] = [];
-    const saved = localStorage.getItem("myTravelPlan");
-    const currentPlan = saved ? JSON.parse(saved) : [];
+    const saved = JSON.parse(localStorage.getItem("myTravelPlan") || "[]");
+    const updatedPlan = myPlan.includes(pkg.id)
+      ? saved.filter((p: any) => p.id !== pkg.id)
+      : [...saved, pkg];
 
-    if (myPlan.includes(pkg.id)) {
-      // Xóa
-      updatedPlan = currentPlan.filter((p: any) => p.id !== pkg.id);
-    } else {
-      // Thêm
-      updatedPlan = [...currentPlan, pkg];
-    }
-
-    // Cập nhật state + localStorage
-    setMyPlan(updatedPlan.map(p => p.id));
+    setMyPlan(updatedPlan.map((p: any) => p.id));
     localStorage.setItem("myTravelPlan", JSON.stringify(updatedPlan));
   };
 
@@ -124,7 +94,7 @@ export default function PlanPage() {
     <>
       <Navbar />
 
-      {/* Hero */}
+      {/* HERO */}
       <section className="pt-60 pb-20 bg-gradient-to-br from-[#d4b872]/10 via-white to-[#d4b872]/5">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-7xl font-serif text-[#d4b872] tracking-widest mb-6">
@@ -136,7 +106,7 @@ export default function PlanPage() {
         </div>
       </section>
 
-      {/* Chọn địa điểm bằng ảnh thật */}
+      {/* LIST ĐỊA ĐIỂM */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-serif text-center mb-12 text-gray-800">
@@ -147,18 +117,21 @@ export default function PlanPage() {
             {locations.map((loc) => (
               <button
                 key={loc.id}
-                onClick={() => setSelectedLocation(selectedLocation === loc.id ? null : loc.id)}
+                onClick={() =>
+                  setSelectedLocation(selectedLocation === loc.id ? null : loc.id)
+                }
                 className={`group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 ${
-                  selectedLocation === loc.id ? "ring-4 ring-[#d4b872] ring-offset-4 scale-105" : ""
+                  selectedLocation === loc.id
+                    ? "ring-4 ring-[#d4b872] ring-offset-4 scale-105"
+                    : ""
                 }`}
               >
-                <Image
-                  src={loc.image}
+                <img
+                  src={loc.image}  // <- ảnh địa điểm FE, KHÔNG liên quan backend
                   alt={loc.name}
-                  width={400}
-                  height={400}
                   className="w-full h-48 object-cover group-hover:scale-110 transition duration-700"
                 />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white text-center">
                   <p className="text-xl font-bold drop-shadow-lg">{loc.name}</p>
@@ -181,12 +154,14 @@ export default function PlanPage() {
         </div>
       </section>
 
-      {/* HIỂN THỊ TẤT CẢ HOẶC THEO LỌC */}
+      {/* LIST TOUR */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-serif text-center mb-12 text-gray-800">
             {selectedLocation
-              ? `Tour tại: ${locations.find(l => l.id === selectedLocation)?.name}`
+              ? `Tour tại: ${
+                  locations.find((l) => l.id === selectedLocation)?.name
+                }`
               : "Tất cả gói dịch vụ du lịch Đà Nẵng"}
             <span className="block text-xl font-normal text-gray-600 mt-3">
               {displayedPackages.length} tour đang chờ bạn khám phá
@@ -194,49 +169,50 @@ export default function PlanPage() {
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {displayedPackages.map((pkg) => {
-              const inPlan = isInPlan(pkg.id);
+            {displayedPackages.map((pkg: any) => {
+              const imgSrc =
+                JSON.parse(pkg.hinhanh || "[]")[0]
+                  ? `http://localhost:3000/${JSON.parse(pkg.hinhanh)[0]}`
+                  : "/default.jpg";
+
               return (
                 <div
                   key={pkg.id}
                   className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all group"
                 >
                   <div className="relative h-64">
-                    <Image
-                      src={pkg.image}
-                      alt={pkg.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition"
+                    <img
+                      src={imgSrc}
+                      alt={pkg.tengoi}
+                      className="w-full h-full object-cover group-hover:scale-110 transition"
                     />
-                    {pkg.hot && (
-                      <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold">
-                        HOT
-                      </div>
-                    )}
                   </div>
 
                   <div className="p-8">
                     <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
-                      {pkg.name}
+                      {pkg.tengoi}
                     </h3>
+
                     <p className="text-gray-600 mb-6">
                       <span className="inline-block bg-[#d4b872]/10 text-[#d4b872] px-3 py-1 rounded-full text-sm">
-                        {pkg.duration}
+                        ⏱ {formatDuration(pkg.thoiluongngay)}
                       </span>
                     </p>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-3xl font-bold text-[#d4b872]">{pkg.price}</span>
+                      <span className="text-3xl font-bold text-[#d4b872]">
+                        {pkg.giaFormat}
+                      </span>
 
                       <button
                         onClick={() => togglePlan(pkg)}
                         className={`px-8 py-4 rounded-full font-bold flex items-center gap-3 transition-all shadow-lg ${
-                          inPlan
+                          isInPlan(pkg.id)
                             ? "bg-red-500 text-white hover:bg-red-600"
                             : "bg-[#d4b872] text-black hover:bg-[#e0c68a]"
                         }`}
                       >
-                        {inPlan ? (
+                        {isInPlan(pkg.id) ? (
                           <>
                             <Trash2 className="w-5 h-5" /> Xóa
                           </>
@@ -254,42 +230,6 @@ export default function PlanPage() {
           </div>
         </div>
       </section>
-
-      {/* GIỎ LỊCH TRÌNH NỔI */}
-      {myPlan.length > 0 && (
-        <div className="fixed right-6 bottom-6 z-50">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 w-80 border border-[#d4b872]/30">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold">Lịch trình ({myPlan.length})</h3>
-              <button onClick={() => setMyPlan([])} className="text-gray-400 hover:text-red-600">
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <div className="space-y-3 max-h-80 overflow-y-auto">
-              {myPlan.map(id => {
-                const pkg = allPackages.find(p => p.id === id);
-                return pkg ? (
-                  <div key={id} className="flex items-center justify-between text-sm bg-gray-50 p-3 rounded-lg">
-                    <span className="truncate pr-3">{pkg.name}</span>
-                    <button
-                      onClick={() => togglePlan(pkg)}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                ) : null;
-              })}
-            </div>
-            <Link
-              href="/myitinerary"
-              className="mt-6 w-full bg-[#d4b872] text-black py-4 rounded-full font-bold text-center block hover:bg-[#e0c68a] transition"
-            >
-              Xem chi tiết lịch trình
-            </Link>
-          </div>
-        </div>
-      )}
 
       <Footer />
     </>

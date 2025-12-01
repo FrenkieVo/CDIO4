@@ -10,6 +10,32 @@ export default function BookingsManagement() {
 
   const [packages, setPackages] = useState<any[]>([]);
 
+  function formatDuration(str: string) {
+    // Dạng 3n2d → 2 ngày 3 đêm
+    const fullMatch = str.match(/(\d+)n(\d+)d/);
+    if (fullMatch) {
+      const days = fullMatch[1];
+      const nights = fullMatch[2];
+      return `${days} ngày ${nights} đêm`;
+    }
+
+    // Dạng 5n → 5 ngày
+    const onlyDaysMatch = str.match(/(\d+)n/);
+    if (onlyDaysMatch) {
+      const days = onlyDaysMatch[1];
+      return `${days} ngày`;
+    }
+
+    // Nếu chỉ ghi "3" → 3 ngày
+    if (!isNaN(Number(str))) {
+      return `${str} ngày`;
+    }
+
+    // Không đúng định dạng thì trả lại nguyên bản
+    return str;
+  }
+
+
   useEffect(() => {
     Api.get("goidichvu")
       .then((res) => {
@@ -75,7 +101,7 @@ export default function BookingsManagement() {
               <div className="space-y-3 text-gray-700 mb-6">
                 <div className="flex items-center gap-3">
                   <Calendar className="w-5 h-5" />
-                  <span>{pkg.thoiluongngay} ngày</span>
+                  <span>{formatDuration(pkg.thoiluongngay)}</span>
                 </div>
 
                 <div className="flex items-center gap-3">

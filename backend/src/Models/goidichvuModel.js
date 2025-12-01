@@ -19,7 +19,10 @@ const getAllGoiDichVu = async () => {
 //lấy gói dịch vụ theo id
 const getGoiDichVuById = async (id) => {
     return await prisma.goidichvu.findUnique({
-        where: {id: parseInt(id)}
+        where: {id: parseInt(id)},
+        include: {
+            Diadiem: true   // ← JOIN bảng địa điểm
+        }
     });
 }
 
