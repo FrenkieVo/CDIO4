@@ -17,6 +17,7 @@ model User {
     trangthai   String?
     creatAT     DateTime    @default(now())
     updateAt    DateTime    @default(now())
+    isLocked Boolean @default(false)
     Role_id     Int
 
     Role        Role?       @relation(fields:[Role_id],references:[id])
@@ -24,6 +25,7 @@ model User {
     Lichtrinh   Lichtrinh[]
     Hoadon      Hoadon[]
     Danhgia     Danhgia[]
+    Booking     Booking[]
 }
 model Role {
     id  Int            @id @default(autoincrement())
@@ -69,6 +71,7 @@ model Goidichvu {
 
     Diadiem             Diadiem?       @relation(fields:[Diadiem_id],references:[id])
     LichtrinhCT         LichtrinhCT[]
+    Booking             Booking[] 
 }
 model Diadiem {
     id                  Int            @id @default(autoincrement())
@@ -88,12 +91,27 @@ model Danhgia {
     Lichtrinh           Lichtrinh?     @relation(fields:[Lichtrinh_id],references:[id])
     User                User?          @relation(fields:[User_id],references:[id])
 }
+model Booking {
+  id        Int      @id @default(autoincrement())
+  hoten     String
+  sodienthoai String
+  soluong   Int
+  sotien    Int
+  tour_id   Int
+  user_id   Int?
+  createdAt DateTime @default(now())
+  status    String   @default("pending")
+
+  Goidichvu Goidichvu @relation(fields: [tour_id], references: [id])
+  User        User?    @relation(fields: [user_id], references: [id])
+}
 model Thanhtoan {
     id                  Int            @id @default(autoincrement())
     phuongthuc          String?
     sotien              Int
     trangthai           String?
     ngaythanhtoan       DateTime       @default(now())
+    
 
     Hoadon              Hoadon[]
 }
@@ -110,3 +128,19 @@ model Hoadon {
     Thanhtoan           Thanhtoan?     @relation(fields:[Thanhtoan_id],references:[id])
     Lichtrinh           Lichtrinh?     @relation(fields:[Lichtrinh_id],references:[id])
 }
+
+model gopy {
+  id             Int      @id @default(autoincrement())
+  hoten          String
+  email          String
+  sodienthoai    String
+  rating         Int
+
+  // Lưu JSON đánh giá chi tiết (rất tiện)
+  danhgiachitiet Json?
+
+  gopythem       String?
+
+  createdAt      DateTime @default(now())
+}
+

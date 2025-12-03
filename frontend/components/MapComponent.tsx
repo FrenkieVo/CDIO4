@@ -27,7 +27,7 @@ export default function MapComponent({ onClick }: MapComponentProps) {
     shadowSize: [41, 41],
   });
 
-  // Nếu chưa mount → hiện placeholder (tránh lỗi appendChild)
+  // Chưa mount → tránh lỗi hydrate
   if (!isMounted) {
     return (
       <div className="w-full h-full bg-gray-200 rounded-xl flex items-center justify-center">
@@ -37,35 +37,37 @@ export default function MapComponent({ onClick }: MapComponentProps) {
   }
 
   return (
-    <MapContainer
-      key="danang-map" // Đảm bảo re-render đúng
-      center={[16.0471, 108.2068]}
-      zoom={10}
-      scrollWheelZoom={true}
-      style={{ height: "100%", width: "100%" }}
-      className="rounded-xl z-0"
-    >
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      />
-      <Marker position={[16.0471, 108.2068]} icon={customIcon}>
-        <Popup>
-          <div className="text-center p-3">
-            <strong className="block text-lg font-semibold">Đà Nẵng</strong>
-            <p className="text-sm text-gray-600 mt-1">Nhấp để khám phá các điểm đến</p>
-          </div>
-        </Popup>
-      </Marker>
+    <div className="relative w-full h-full rounded-xl overflow-hidden">
+      {/* Bản đồ */}
+      <MapContainer
+        key="danang-map"
+        center={[16.0471, 108.2068]}
+        zoom={10}
+        scrollWheelZoom
+        className="w-full h-full z-0"
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        />
 
-      {/* Overlay để click mở sidebar */}
+        <Marker position={[16.0471, 108.2068]} icon={customIcon}>
+          <Popup>
+            <div className="text-center p-3">
+              <strong className="text-lg font-semibold">Đà Nẵng</strong>
+              <p className="text-sm text-gray-600 mt-1">
+                Nhấp để khám phá các điểm đến
+              </p>
+            </div>
+          </Popup>
+        </Marker>
+      </MapContainer>
+
+      {/* OVERLAY — đặt ở ngoài MapContainer */}
       <div
         className="absolute inset-0 z-10 cursor-pointer"
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick();
-        }}
+        onClick={onClick}
       />
-    </MapContainer>
+    </div>
   );
 }

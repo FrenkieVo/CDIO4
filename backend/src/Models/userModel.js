@@ -21,21 +21,26 @@ const createUser = async (data) => {
 //lấy thông tin người dùng 
 const getUser = async (id) => {
     return await prisma.user.findMany({
-        //lấy những trường hiện ra
-        select:{
-            hoten   : true,    
-            email   : true,         
-            matkhau  : true,
-            sodienthoai : true,
-            diachi      : true,
-            trangthai   : true
+        include:{
+            Role: true
         }
     })
 }
 //lấy thông tin vai trò theo id
 const getUserById = async (id) => {
     return await prisma.user.findUnique({
-        where: {id}
+        where: {id},
+        select: {
+            id: true,
+            hoten: true,
+            email: true,
+            matkhau: true,
+            sodienthoai: true,
+            diachi: true,
+            trangthai: true,
+            isLocked: true,
+            Role: true
+        }
     })
 }
 //sửa thông tin vai trò
@@ -45,12 +50,13 @@ const updateUser = async (id,data) => {
         data
     })
 }
-//xoa vai trò
+//xoa user
 const deleteUser = async (id) => {
-    return await prisma.user.delete({
-        where: {id},
-    })
-}
+    return await prisma.user.update({
+        where: { id },
+        data: { trangthai: "deleted" }
+    });
+};
 
 
 //check email đã tồn tại trong table users
@@ -85,6 +91,10 @@ const checkLoginUser = async (data) => {
   if (!existingUser) {
    return false;
  }
+ //  User bị admin khóa → CHẶN LOGIN
+    if (existingUser.isLocked) {
+        return { isLocked: true };
+    }
  // So sánh mật khẩu không hash với mật khẩu đã được hash trong cơ sở dữ liệu
  const passwordMatch = await bcrypt.compare(data.matkhau, existingUser.matkhau);
   if (!passwordMatch) {

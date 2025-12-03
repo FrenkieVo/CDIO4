@@ -44,6 +44,7 @@ type TourDetail = {
 export default function ServiceTravelDetailPage() {
   const params = useParams();
   const router = useRouter();
+
   const id = params.id;
 
   const [tour, setTour] = useState<TourDetail | null>(null);
@@ -223,7 +224,10 @@ export default function ServiceTravelDetailPage() {
               </div>
             </div>
 
-            <button className="mt-4 w-full py-3 rounded-full bg-[#d4b872] text-black font-semibold hover:bg-[#e0c68a] transition">
+            <button
+              onClick={() => router.push(`/bookings/${tour.id}`)}
+              className="bg-yellow-500 text-black px-12 py-4 rounded-full font-bold"
+            >
               Đặt tour ngay
             </button>
           </div>

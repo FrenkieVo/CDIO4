@@ -78,7 +78,7 @@ const WhereToGoSection = () => {
                     {dest.desc}
                   </p>
                   <button className="text-amber-700 font-semibold text-sm hover:text-amber-800 transition-colors flex items-center gap-1">
-                    Khám phá thêm →
+                    Khám phá thêm <span aria-hidden="true">→</span>
                   </button>
                 </div>
               </div>

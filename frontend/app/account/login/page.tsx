@@ -52,33 +52,43 @@ export default function LoginPage() {
         matkhau: input.password,
       }
     // Gửi API login
-    Api.post("/user/login",data) 
+    Api.post("user/login",data) 
     .then((response: any) => {
       if(response.data.errors){
       // đưa data qua bên api rồi be nó kiểm tra
       setErrors(response.data.errors);
       }else{
-            console.log(response);
+            console.log(response.data);
 
             // Lưu token & user vào localStorage
-            sessionStorage.setItem("save", JSON.stringify(response.data));
+            sessionStorage.setItem("user", JSON.stringify(response.data.user));
+            sessionStorage.setItem("token", response.data.token);
 
-            alert("Đăng nhập thành công!");
-
-            const role = response.data.user?.Role_id;
-
-            // Nếu role === 3 => chuyển tới trang admin
-            if (role == 1) {
-              router.push("/admin");
-            } else if (role == 3) {
-              router.push("/");
-            }
+            const role = response.data.user?.Role?.id;
+            console.log("== USER ROLE ==", role);
+            // Nếu role == 3 => chuyển tới trang admin
+            setTimeout(() => {
+                if (role === 1) {
+                    router.push("/admin");
+                } else {
+                    router.push("/");
+                }
+            }, 100);
             }
       })
       .catch((err: any) => {
-        console.error(err);
-        setErrors({ login: "Email hoặc mật khẩu không đúng" });
-      });
+    console.error(err);
+
+    const msg = err.response?.data?.errors?.login;
+
+    if (msg) {
+      // Lỗi trả từ BE — đúng nội dung "Tài khoản bị khóa"
+      setErrors({ login: msg });
+    } else {
+      // Không có lỗi BE → fallback
+      setErrors({ login: "Email hoặc mật khẩu không đúng" });
+    }
+});
     }
   }
 

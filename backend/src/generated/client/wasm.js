@@ -129,6 +129,7 @@ exports.Prisma.UserScalarFieldEnum = {
   trangthai: 'trangthai',
   creatAT: 'creatAT',
   updateAt: 'updateAt',
+  isLocked: 'isLocked',
   Role_id: 'Role_id'
 };
 
@@ -183,6 +184,18 @@ exports.Prisma.DanhgiaScalarFieldEnum = {
   Lichtrinh_id: 'Lichtrinh_id'
 };
 
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  hoten: 'hoten',
+  sodienthoai: 'sodienthoai',
+  soluong: 'soluong',
+  sotien: 'sotien',
+  tour_id: 'tour_id',
+  user_id: 'user_id',
+  createdAt: 'createdAt',
+  status: 'status'
+};
+
 exports.Prisma.ThanhtoanScalarFieldEnum = {
   id: 'id',
   phuongthuc: 'phuongthuc',
@@ -201,14 +214,36 @@ exports.Prisma.HoadonScalarFieldEnum = {
   Lichtrinh_id: 'Lichtrinh_id'
 };
 
+exports.Prisma.GopyScalarFieldEnum = {
+  id: 'id',
+  hoten: 'hoten',
+  email: 'email',
+  sodienthoai: 'sodienthoai',
+  rating: 'rating',
+  danhgiachitiet: 'danhgiachitiet',
+  gopythem: 'gopythem',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 
@@ -220,8 +255,10 @@ exports.Prisma.ModelName = {
   Goidichvu: 'Goidichvu',
   Diadiem: 'Diadiem',
   Danhgia: 'Danhgia',
+  Booking: 'Booking',
   Thanhtoan: 'Thanhtoan',
-  Hoadon: 'Hoadon'
+  Hoadon: 'Hoadon',
+  gopy: 'gopy'
 };
 
 /**

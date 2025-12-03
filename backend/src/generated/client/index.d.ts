@@ -49,6 +49,11 @@ export type Diadiem = $Result.DefaultSelection<Prisma.$DiadiemPayload>
  */
 export type Danhgia = $Result.DefaultSelection<Prisma.$DanhgiaPayload>
 /**
+ * Model Booking
+ * 
+ */
+export type Booking = $Result.DefaultSelection<Prisma.$BookingPayload>
+/**
  * Model Thanhtoan
  * 
  */
@@ -58,6 +63,11 @@ export type Thanhtoan = $Result.DefaultSelection<Prisma.$ThanhtoanPayload>
  * 
  */
 export type Hoadon = $Result.DefaultSelection<Prisma.$HoadonPayload>
+/**
+ * Model gopy
+ * 
+ */
+export type gopy = $Result.DefaultSelection<Prisma.$gopyPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -252,6 +262,16 @@ export class PrismaClient<
   get danhgia(): Prisma.DanhgiaDelegate<ExtArgs>;
 
   /**
+   * `prisma.booking`: Exposes CRUD operations for the **Booking** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Bookings
+    * const bookings = await prisma.booking.findMany()
+    * ```
+    */
+  get booking(): Prisma.BookingDelegate<ExtArgs>;
+
+  /**
    * `prisma.thanhtoan`: Exposes CRUD operations for the **Thanhtoan** model.
     * Example usage:
     * ```ts
@@ -270,6 +290,16 @@ export class PrismaClient<
     * ```
     */
   get hoadon(): Prisma.HoadonDelegate<ExtArgs>;
+
+  /**
+   * `prisma.gopy`: Exposes CRUD operations for the **gopy** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Gopies
+    * const gopies = await prisma.gopy.findMany()
+    * ```
+    */
+  get gopy(): Prisma.gopyDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -754,8 +784,10 @@ export namespace Prisma {
     Goidichvu: 'Goidichvu',
     Diadiem: 'Diadiem',
     Danhgia: 'Danhgia',
+    Booking: 'Booking',
     Thanhtoan: 'Thanhtoan',
-    Hoadon: 'Hoadon'
+    Hoadon: 'Hoadon',
+    gopy: 'gopy'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -772,7 +804,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'role' | 'lichtrinh' | 'lichtrinhCT' | 'goidichvu' | 'diadiem' | 'danhgia' | 'thanhtoan' | 'hoadon'
+      modelProps: 'user' | 'role' | 'lichtrinh' | 'lichtrinhCT' | 'goidichvu' | 'diadiem' | 'danhgia' | 'booking' | 'thanhtoan' | 'hoadon' | 'gopy'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1238,6 +1270,72 @@ export namespace Prisma {
           }
         }
       }
+      Booking: {
+        payload: Prisma.$BookingPayload<ExtArgs>
+        fields: Prisma.BookingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookingFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookingFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
+          }
+          findFirst: {
+            args: Prisma.BookingFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookingFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
+          }
+          findMany: {
+            args: Prisma.BookingFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>[]
+          }
+          create: {
+            args: Prisma.BookingCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
+          }
+          createMany: {
+            args: Prisma.BookingCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.BookingDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
+          }
+          update: {
+            args: Prisma.BookingUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookingDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookingUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.BookingUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$BookingPayload>
+          }
+          aggregate: {
+            args: Prisma.BookingAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateBooking>
+          }
+          groupBy: {
+            args: Prisma.BookingGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<BookingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookingCountArgs<ExtArgs>,
+            result: $Utils.Optional<BookingCountAggregateOutputType> | number
+          }
+        }
+      }
       Thanhtoan: {
         payload: Prisma.$ThanhtoanPayload<ExtArgs>
         fields: Prisma.ThanhtoanFieldRefs
@@ -1367,6 +1465,72 @@ export namespace Prisma {
           count: {
             args: Prisma.HoadonCountArgs<ExtArgs>,
             result: $Utils.Optional<HoadonCountAggregateOutputType> | number
+          }
+        }
+      }
+      gopy: {
+        payload: Prisma.$gopyPayload<ExtArgs>
+        fields: Prisma.gopyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.gopyFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.gopyFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload>
+          }
+          findFirst: {
+            args: Prisma.gopyFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.gopyFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload>
+          }
+          findMany: {
+            args: Prisma.gopyFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload>[]
+          }
+          create: {
+            args: Prisma.gopyCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload>
+          }
+          createMany: {
+            args: Prisma.gopyCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.gopyDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload>
+          }
+          update: {
+            args: Prisma.gopyUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload>
+          }
+          deleteMany: {
+            args: Prisma.gopyDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.gopyUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.gopyUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gopyPayload>
+          }
+          aggregate: {
+            args: Prisma.GopyAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGopy>
+          }
+          groupBy: {
+            args: Prisma.gopyGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GopyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.gopyCountArgs<ExtArgs>,
+            result: $Utils.Optional<GopyCountAggregateOutputType> | number
           }
         }
       }
@@ -1533,12 +1697,14 @@ export namespace Prisma {
     Lichtrinh: number
     Hoadon: number
     Danhgia: number
+    Booking: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Lichtrinh?: boolean | UserCountOutputTypeCountLichtrinhArgs
     Hoadon?: boolean | UserCountOutputTypeCountHoadonArgs
     Danhgia?: boolean | UserCountOutputTypeCountDanhgiaArgs
+    Booking?: boolean | UserCountOutputTypeCountBookingArgs
   }
 
   // Custom InputTypes
@@ -1571,6 +1737,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountDanhgiaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DanhgiaWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingWhereInput
   }
 
 
@@ -1660,10 +1833,12 @@ export namespace Prisma {
 
   export type GoidichvuCountOutputType = {
     LichtrinhCT: number
+    Booking: number
   }
 
   export type GoidichvuCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     LichtrinhCT?: boolean | GoidichvuCountOutputTypeCountLichtrinhCTArgs
+    Booking?: boolean | GoidichvuCountOutputTypeCountBookingArgs
   }
 
   // Custom InputTypes
@@ -1682,6 +1857,13 @@ export namespace Prisma {
    */
   export type GoidichvuCountOutputTypeCountLichtrinhCTArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LichtrinhCTWhereInput
+  }
+
+  /**
+   * GoidichvuCountOutputType without action
+   */
+  export type GoidichvuCountOutputTypeCountBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingWhereInput
   }
 
 
@@ -1783,6 +1965,7 @@ export namespace Prisma {
     trangthai: string | null
     creatAT: Date | null
     updateAt: Date | null
+    isLocked: boolean | null
     Role_id: number | null
   }
 
@@ -1796,6 +1979,7 @@ export namespace Prisma {
     trangthai: string | null
     creatAT: Date | null
     updateAt: Date | null
+    isLocked: boolean | null
     Role_id: number | null
   }
 
@@ -1809,6 +1993,7 @@ export namespace Prisma {
     trangthai: number
     creatAT: number
     updateAt: number
+    isLocked: number
     Role_id: number
     _all: number
   }
@@ -1834,6 +2019,7 @@ export namespace Prisma {
     trangthai?: true
     creatAT?: true
     updateAt?: true
+    isLocked?: true
     Role_id?: true
   }
 
@@ -1847,6 +2033,7 @@ export namespace Prisma {
     trangthai?: true
     creatAT?: true
     updateAt?: true
+    isLocked?: true
     Role_id?: true
   }
 
@@ -1860,6 +2047,7 @@ export namespace Prisma {
     trangthai?: true
     creatAT?: true
     updateAt?: true
+    isLocked?: true
     Role_id?: true
     _all?: true
   }
@@ -1960,6 +2148,7 @@ export namespace Prisma {
     trangthai: string | null
     creatAT: Date
     updateAt: Date
+    isLocked: boolean
     Role_id: number
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -1992,11 +2181,13 @@ export namespace Prisma {
     trangthai?: boolean
     creatAT?: boolean
     updateAt?: boolean
+    isLocked?: boolean
     Role_id?: boolean
     Role?: boolean | User$RoleArgs<ExtArgs>
     Lichtrinh?: boolean | User$LichtrinhArgs<ExtArgs>
     Hoadon?: boolean | User$HoadonArgs<ExtArgs>
     Danhgia?: boolean | User$DanhgiaArgs<ExtArgs>
+    Booking?: boolean | User$BookingArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2011,6 +2202,7 @@ export namespace Prisma {
     trangthai?: boolean
     creatAT?: boolean
     updateAt?: boolean
+    isLocked?: boolean
     Role_id?: boolean
   }
 
@@ -2019,6 +2211,7 @@ export namespace Prisma {
     Lichtrinh?: boolean | User$LichtrinhArgs<ExtArgs>
     Hoadon?: boolean | User$HoadonArgs<ExtArgs>
     Danhgia?: boolean | User$DanhgiaArgs<ExtArgs>
+    Booking?: boolean | User$BookingArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2029,6 +2222,7 @@ export namespace Prisma {
       Lichtrinh: Prisma.$LichtrinhPayload<ExtArgs>[]
       Hoadon: Prisma.$HoadonPayload<ExtArgs>[]
       Danhgia: Prisma.$DanhgiaPayload<ExtArgs>[]
+      Booking: Prisma.$BookingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2040,6 +2234,7 @@ export namespace Prisma {
       trangthai: string | null
       creatAT: Date
       updateAt: Date
+      isLocked: boolean
       Role_id: number
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -2413,6 +2608,8 @@ export namespace Prisma {
 
     Danhgia<T extends User$DanhgiaArgs<ExtArgs> = {}>(args?: Subset<T, User$DanhgiaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DanhgiaPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    Booking<T extends User$BookingArgs<ExtArgs> = {}>(args?: Subset<T, User$BookingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2450,6 +2647,7 @@ export namespace Prisma {
     readonly trangthai: FieldRef<"User", 'String'>
     readonly creatAT: FieldRef<"User", 'DateTime'>
     readonly updateAt: FieldRef<"User", 'DateTime'>
+    readonly isLocked: FieldRef<"User", 'Boolean'>
     readonly Role_id: FieldRef<"User", 'Int'>
   }
     
@@ -2822,6 +3020,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DanhgiaScalarFieldEnum | DanhgiaScalarFieldEnum[]
+  }
+
+  /**
+   * User.Booking
+   */
+  export type User$BookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    where?: BookingWhereInput
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    cursor?: BookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
   }
 
   /**
@@ -6063,6 +6281,7 @@ export namespace Prisma {
     Diadiem_id?: boolean
     Diadiem?: boolean | Goidichvu$DiadiemArgs<ExtArgs>
     LichtrinhCT?: boolean | Goidichvu$LichtrinhCTArgs<ExtArgs>
+    Booking?: boolean | Goidichvu$BookingArgs<ExtArgs>
     _count?: boolean | GoidichvuCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["goidichvu"]>
 
@@ -6082,6 +6301,7 @@ export namespace Prisma {
   export type GoidichvuInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Diadiem?: boolean | Goidichvu$DiadiemArgs<ExtArgs>
     LichtrinhCT?: boolean | Goidichvu$LichtrinhCTArgs<ExtArgs>
+    Booking?: boolean | Goidichvu$BookingArgs<ExtArgs>
     _count?: boolean | GoidichvuCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6090,6 +6310,7 @@ export namespace Prisma {
     objects: {
       Diadiem: Prisma.$DiadiemPayload<ExtArgs> | null
       LichtrinhCT: Prisma.$LichtrinhCTPayload<ExtArgs>[]
+      Booking: Prisma.$BookingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6469,6 +6690,8 @@ export namespace Prisma {
 
     LichtrinhCT<T extends Goidichvu$LichtrinhCTArgs<ExtArgs> = {}>(args?: Subset<T, Goidichvu$LichtrinhCTArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LichtrinhCTPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    Booking<T extends Goidichvu$BookingArgs<ExtArgs> = {}>(args?: Subset<T, Goidichvu$BookingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6837,6 +7060,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LichtrinhCTScalarFieldEnum | LichtrinhCTScalarFieldEnum[]
+  }
+
+  /**
+   * Goidichvu.Booking
+   */
+  export type Goidichvu$BookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    where?: BookingWhereInput
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    cursor?: BookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
   }
 
   /**
@@ -8779,6 +9022,1023 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: DanhgiaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Booking
+   */
+
+  export type AggregateBooking = {
+    _count: BookingCountAggregateOutputType | null
+    _avg: BookingAvgAggregateOutputType | null
+    _sum: BookingSumAggregateOutputType | null
+    _min: BookingMinAggregateOutputType | null
+    _max: BookingMaxAggregateOutputType | null
+  }
+
+  export type BookingAvgAggregateOutputType = {
+    id: number | null
+    soluong: number | null
+    sotien: number | null
+    tour_id: number | null
+    user_id: number | null
+  }
+
+  export type BookingSumAggregateOutputType = {
+    id: number | null
+    soluong: number | null
+    sotien: number | null
+    tour_id: number | null
+    user_id: number | null
+  }
+
+  export type BookingMinAggregateOutputType = {
+    id: number | null
+    hoten: string | null
+    sodienthoai: string | null
+    soluong: number | null
+    sotien: number | null
+    tour_id: number | null
+    user_id: number | null
+    createdAt: Date | null
+    status: string | null
+  }
+
+  export type BookingMaxAggregateOutputType = {
+    id: number | null
+    hoten: string | null
+    sodienthoai: string | null
+    soluong: number | null
+    sotien: number | null
+    tour_id: number | null
+    user_id: number | null
+    createdAt: Date | null
+    status: string | null
+  }
+
+  export type BookingCountAggregateOutputType = {
+    id: number
+    hoten: number
+    sodienthoai: number
+    soluong: number
+    sotien: number
+    tour_id: number
+    user_id: number
+    createdAt: number
+    status: number
+    _all: number
+  }
+
+
+  export type BookingAvgAggregateInputType = {
+    id?: true
+    soluong?: true
+    sotien?: true
+    tour_id?: true
+    user_id?: true
+  }
+
+  export type BookingSumAggregateInputType = {
+    id?: true
+    soluong?: true
+    sotien?: true
+    tour_id?: true
+    user_id?: true
+  }
+
+  export type BookingMinAggregateInputType = {
+    id?: true
+    hoten?: true
+    sodienthoai?: true
+    soluong?: true
+    sotien?: true
+    tour_id?: true
+    user_id?: true
+    createdAt?: true
+    status?: true
+  }
+
+  export type BookingMaxAggregateInputType = {
+    id?: true
+    hoten?: true
+    sodienthoai?: true
+    soluong?: true
+    sotien?: true
+    tour_id?: true
+    user_id?: true
+    createdAt?: true
+    status?: true
+  }
+
+  export type BookingCountAggregateInputType = {
+    id?: true
+    hoten?: true
+    sodienthoai?: true
+    soluong?: true
+    sotien?: true
+    tour_id?: true
+    user_id?: true
+    createdAt?: true
+    status?: true
+    _all?: true
+  }
+
+  export type BookingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Booking to aggregate.
+     */
+    where?: BookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Bookings to fetch.
+     */
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Bookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Bookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Bookings
+    **/
+    _count?: true | BookingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BookingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BookingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookingMaxAggregateInputType
+  }
+
+  export type GetBookingAggregateType<T extends BookingAggregateArgs> = {
+        [P in keyof T & keyof AggregateBooking]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBooking[P]>
+      : GetScalarType<T[P], AggregateBooking[P]>
+  }
+
+
+
+
+  export type BookingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingWhereInput
+    orderBy?: BookingOrderByWithAggregationInput | BookingOrderByWithAggregationInput[]
+    by: BookingScalarFieldEnum[] | BookingScalarFieldEnum
+    having?: BookingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookingCountAggregateInputType | true
+    _avg?: BookingAvgAggregateInputType
+    _sum?: BookingSumAggregateInputType
+    _min?: BookingMinAggregateInputType
+    _max?: BookingMaxAggregateInputType
+  }
+
+  export type BookingGroupByOutputType = {
+    id: number
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    tour_id: number
+    user_id: number | null
+    createdAt: Date
+    status: string
+    _count: BookingCountAggregateOutputType | null
+    _avg: BookingAvgAggregateOutputType | null
+    _sum: BookingSumAggregateOutputType | null
+    _min: BookingMinAggregateOutputType | null
+    _max: BookingMaxAggregateOutputType | null
+  }
+
+  type GetBookingGroupByPayload<T extends BookingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookingGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    hoten?: boolean
+    sodienthoai?: boolean
+    soluong?: boolean
+    sotien?: boolean
+    tour_id?: boolean
+    user_id?: boolean
+    createdAt?: boolean
+    status?: boolean
+    Goidichvu?: boolean | GoidichvuDefaultArgs<ExtArgs>
+    User?: boolean | Booking$UserArgs<ExtArgs>
+  }, ExtArgs["result"]["booking"]>
+
+
+  export type BookingSelectScalar = {
+    id?: boolean
+    hoten?: boolean
+    sodienthoai?: boolean
+    soluong?: boolean
+    sotien?: boolean
+    tour_id?: boolean
+    user_id?: boolean
+    createdAt?: boolean
+    status?: boolean
+  }
+
+  export type BookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Goidichvu?: boolean | GoidichvuDefaultArgs<ExtArgs>
+    User?: boolean | Booking$UserArgs<ExtArgs>
+  }
+
+  export type $BookingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Booking"
+    objects: {
+      Goidichvu: Prisma.$GoidichvuPayload<ExtArgs>
+      User: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      hoten: string
+      sodienthoai: string
+      soluong: number
+      sotien: number
+      tour_id: number
+      user_id: number | null
+      createdAt: Date
+      status: string
+    }, ExtArgs["result"]["booking"]>
+    composites: {}
+  }
+
+  type BookingGetPayload<S extends boolean | null | undefined | BookingDefaultArgs> = $Result.GetResult<Prisma.$BookingPayload, S>
+
+  type BookingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<BookingFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: BookingCountAggregateInputType | true
+    }
+
+  export interface BookingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Booking'], meta: { name: 'Booking' } }
+    /**
+     * Find zero or one Booking that matches the filter.
+     * @param {BookingFindUniqueArgs} args - Arguments to find a Booking
+     * @example
+     * // Get one Booking
+     * const booking = await prisma.booking.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends BookingFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, BookingFindUniqueArgs<ExtArgs>>
+    ): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Booking that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {BookingFindUniqueOrThrowArgs} args - Arguments to find a Booking
+     * @example
+     * // Get one Booking
+     * const booking = await prisma.booking.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends BookingFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, BookingFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Booking that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingFindFirstArgs} args - Arguments to find a Booking
+     * @example
+     * // Get one Booking
+     * const booking = await prisma.booking.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends BookingFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, BookingFindFirstArgs<ExtArgs>>
+    ): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Booking that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingFindFirstOrThrowArgs} args - Arguments to find a Booking
+     * @example
+     * // Get one Booking
+     * const booking = await prisma.booking.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends BookingFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, BookingFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Bookings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Bookings
+     * const bookings = await prisma.booking.findMany()
+     * 
+     * // Get first 10 Bookings
+     * const bookings = await prisma.booking.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookingWithIdOnly = await prisma.booking.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends BookingFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, BookingFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Booking.
+     * @param {BookingCreateArgs} args - Arguments to create a Booking.
+     * @example
+     * // Create one Booking
+     * const Booking = await prisma.booking.create({
+     *   data: {
+     *     // ... data to create a Booking
+     *   }
+     * })
+     * 
+    **/
+    create<T extends BookingCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, BookingCreateArgs<ExtArgs>>
+    ): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Bookings.
+     * @param {BookingCreateManyArgs} args - Arguments to create many Bookings.
+     * @example
+     * // Create many Bookings
+     * const booking = await prisma.booking.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends BookingCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, BookingCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Booking.
+     * @param {BookingDeleteArgs} args - Arguments to delete one Booking.
+     * @example
+     * // Delete one Booking
+     * const Booking = await prisma.booking.delete({
+     *   where: {
+     *     // ... filter to delete one Booking
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends BookingDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, BookingDeleteArgs<ExtArgs>>
+    ): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Booking.
+     * @param {BookingUpdateArgs} args - Arguments to update one Booking.
+     * @example
+     * // Update one Booking
+     * const booking = await prisma.booking.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends BookingUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, BookingUpdateArgs<ExtArgs>>
+    ): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Bookings.
+     * @param {BookingDeleteManyArgs} args - Arguments to filter Bookings to delete.
+     * @example
+     * // Delete a few Bookings
+     * const { count } = await prisma.booking.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends BookingDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, BookingDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Bookings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Bookings
+     * const booking = await prisma.booking.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends BookingUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, BookingUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Booking.
+     * @param {BookingUpsertArgs} args - Arguments to update or create a Booking.
+     * @example
+     * // Update or create a Booking
+     * const booking = await prisma.booking.upsert({
+     *   create: {
+     *     // ... data to create a Booking
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Booking we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends BookingUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, BookingUpsertArgs<ExtArgs>>
+    ): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Bookings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingCountArgs} args - Arguments to filter Bookings to count.
+     * @example
+     * // Count the number of Bookings
+     * const count = await prisma.booking.count({
+     *   where: {
+     *     // ... the filter for the Bookings we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookingCountArgs>(
+      args?: Subset<T, BookingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Booking.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookingAggregateArgs>(args: Subset<T, BookingAggregateArgs>): Prisma.PrismaPromise<GetBookingAggregateType<T>>
+
+    /**
+     * Group by Booking.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookingGroupByArgs['orderBy'] }
+        : { orderBy?: BookingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Booking model
+   */
+  readonly fields: BookingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Booking.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    Goidichvu<T extends GoidichvuDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GoidichvuDefaultArgs<ExtArgs>>): Prisma__GoidichvuClient<$Result.GetResult<Prisma.$GoidichvuPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    User<T extends Booking$UserArgs<ExtArgs> = {}>(args?: Subset<T, Booking$UserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Booking model
+   */ 
+  interface BookingFieldRefs {
+    readonly id: FieldRef<"Booking", 'Int'>
+    readonly hoten: FieldRef<"Booking", 'String'>
+    readonly sodienthoai: FieldRef<"Booking", 'String'>
+    readonly soluong: FieldRef<"Booking", 'Int'>
+    readonly sotien: FieldRef<"Booking", 'Int'>
+    readonly tour_id: FieldRef<"Booking", 'Int'>
+    readonly user_id: FieldRef<"Booking", 'Int'>
+    readonly createdAt: FieldRef<"Booking", 'DateTime'>
+    readonly status: FieldRef<"Booking", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Booking findUnique
+   */
+  export type BookingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * Filter, which Booking to fetch.
+     */
+    where: BookingWhereUniqueInput
+  }
+
+  /**
+   * Booking findUniqueOrThrow
+   */
+  export type BookingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * Filter, which Booking to fetch.
+     */
+    where: BookingWhereUniqueInput
+  }
+
+  /**
+   * Booking findFirst
+   */
+  export type BookingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * Filter, which Booking to fetch.
+     */
+    where?: BookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Bookings to fetch.
+     */
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Bookings.
+     */
+    cursor?: BookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Bookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Bookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Bookings.
+     */
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+  }
+
+  /**
+   * Booking findFirstOrThrow
+   */
+  export type BookingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * Filter, which Booking to fetch.
+     */
+    where?: BookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Bookings to fetch.
+     */
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Bookings.
+     */
+    cursor?: BookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Bookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Bookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Bookings.
+     */
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+  }
+
+  /**
+   * Booking findMany
+   */
+  export type BookingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * Filter, which Bookings to fetch.
+     */
+    where?: BookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Bookings to fetch.
+     */
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Bookings.
+     */
+    cursor?: BookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Bookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Bookings.
+     */
+    skip?: number
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+  }
+
+  /**
+   * Booking create
+   */
+  export type BookingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Booking.
+     */
+    data: XOR<BookingCreateInput, BookingUncheckedCreateInput>
+  }
+
+  /**
+   * Booking createMany
+   */
+  export type BookingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Bookings.
+     */
+    data: BookingCreateManyInput | BookingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Booking update
+   */
+  export type BookingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Booking.
+     */
+    data: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>
+    /**
+     * Choose, which Booking to update.
+     */
+    where: BookingWhereUniqueInput
+  }
+
+  /**
+   * Booking updateMany
+   */
+  export type BookingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Bookings.
+     */
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyInput>
+    /**
+     * Filter which Bookings to update
+     */
+    where?: BookingWhereInput
+  }
+
+  /**
+   * Booking upsert
+   */
+  export type BookingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Booking to update in case it exists.
+     */
+    where: BookingWhereUniqueInput
+    /**
+     * In case the Booking found by the `where` argument doesn't exist, create a new Booking with this data.
+     */
+    create: XOR<BookingCreateInput, BookingUncheckedCreateInput>
+    /**
+     * In case the Booking was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>
+  }
+
+  /**
+   * Booking delete
+   */
+  export type BookingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
+     * Filter which Booking to delete.
+     */
+    where: BookingWhereUniqueInput
+  }
+
+  /**
+   * Booking deleteMany
+   */
+  export type BookingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Bookings to delete
+     */
+    where?: BookingWhereInput
+  }
+
+  /**
+   * Booking.User
+   */
+  export type Booking$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Booking without action
+   */
+  export type BookingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
   }
 
 
@@ -10776,6 +12036,929 @@ export namespace Prisma {
 
 
   /**
+   * Model gopy
+   */
+
+  export type AggregateGopy = {
+    _count: GopyCountAggregateOutputType | null
+    _avg: GopyAvgAggregateOutputType | null
+    _sum: GopySumAggregateOutputType | null
+    _min: GopyMinAggregateOutputType | null
+    _max: GopyMaxAggregateOutputType | null
+  }
+
+  export type GopyAvgAggregateOutputType = {
+    id: number | null
+    rating: number | null
+  }
+
+  export type GopySumAggregateOutputType = {
+    id: number | null
+    rating: number | null
+  }
+
+  export type GopyMinAggregateOutputType = {
+    id: number | null
+    hoten: string | null
+    email: string | null
+    sodienthoai: string | null
+    rating: number | null
+    gopythem: string | null
+    createdAt: Date | null
+  }
+
+  export type GopyMaxAggregateOutputType = {
+    id: number | null
+    hoten: string | null
+    email: string | null
+    sodienthoai: string | null
+    rating: number | null
+    gopythem: string | null
+    createdAt: Date | null
+  }
+
+  export type GopyCountAggregateOutputType = {
+    id: number
+    hoten: number
+    email: number
+    sodienthoai: number
+    rating: number
+    danhgiachitiet: number
+    gopythem: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type GopyAvgAggregateInputType = {
+    id?: true
+    rating?: true
+  }
+
+  export type GopySumAggregateInputType = {
+    id?: true
+    rating?: true
+  }
+
+  export type GopyMinAggregateInputType = {
+    id?: true
+    hoten?: true
+    email?: true
+    sodienthoai?: true
+    rating?: true
+    gopythem?: true
+    createdAt?: true
+  }
+
+  export type GopyMaxAggregateInputType = {
+    id?: true
+    hoten?: true
+    email?: true
+    sodienthoai?: true
+    rating?: true
+    gopythem?: true
+    createdAt?: true
+  }
+
+  export type GopyCountAggregateInputType = {
+    id?: true
+    hoten?: true
+    email?: true
+    sodienthoai?: true
+    rating?: true
+    danhgiachitiet?: true
+    gopythem?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type GopyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which gopy to aggregate.
+     */
+    where?: gopyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gopies to fetch.
+     */
+    orderBy?: gopyOrderByWithRelationInput | gopyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: gopyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gopies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gopies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned gopies
+    **/
+    _count?: true | GopyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GopyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GopySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GopyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GopyMaxAggregateInputType
+  }
+
+  export type GetGopyAggregateType<T extends GopyAggregateArgs> = {
+        [P in keyof T & keyof AggregateGopy]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGopy[P]>
+      : GetScalarType<T[P], AggregateGopy[P]>
+  }
+
+
+
+
+  export type gopyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: gopyWhereInput
+    orderBy?: gopyOrderByWithAggregationInput | gopyOrderByWithAggregationInput[]
+    by: GopyScalarFieldEnum[] | GopyScalarFieldEnum
+    having?: gopyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GopyCountAggregateInputType | true
+    _avg?: GopyAvgAggregateInputType
+    _sum?: GopySumAggregateInputType
+    _min?: GopyMinAggregateInputType
+    _max?: GopyMaxAggregateInputType
+  }
+
+  export type GopyGroupByOutputType = {
+    id: number
+    hoten: string
+    email: string
+    sodienthoai: string
+    rating: number
+    danhgiachitiet: JsonValue | null
+    gopythem: string | null
+    createdAt: Date
+    _count: GopyCountAggregateOutputType | null
+    _avg: GopyAvgAggregateOutputType | null
+    _sum: GopySumAggregateOutputType | null
+    _min: GopyMinAggregateOutputType | null
+    _max: GopyMaxAggregateOutputType | null
+  }
+
+  type GetGopyGroupByPayload<T extends gopyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GopyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GopyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GopyGroupByOutputType[P]>
+            : GetScalarType<T[P], GopyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type gopySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    hoten?: boolean
+    email?: boolean
+    sodienthoai?: boolean
+    rating?: boolean
+    danhgiachitiet?: boolean
+    gopythem?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["gopy"]>
+
+
+  export type gopySelectScalar = {
+    id?: boolean
+    hoten?: boolean
+    email?: boolean
+    sodienthoai?: boolean
+    rating?: boolean
+    danhgiachitiet?: boolean
+    gopythem?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $gopyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "gopy"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      hoten: string
+      email: string
+      sodienthoai: string
+      rating: number
+      danhgiachitiet: Prisma.JsonValue | null
+      gopythem: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["gopy"]>
+    composites: {}
+  }
+
+  type gopyGetPayload<S extends boolean | null | undefined | gopyDefaultArgs> = $Result.GetResult<Prisma.$gopyPayload, S>
+
+  type gopyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<gopyFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: GopyCountAggregateInputType | true
+    }
+
+  export interface gopyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['gopy'], meta: { name: 'gopy' } }
+    /**
+     * Find zero or one Gopy that matches the filter.
+     * @param {gopyFindUniqueArgs} args - Arguments to find a Gopy
+     * @example
+     * // Get one Gopy
+     * const gopy = await prisma.gopy.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends gopyFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, gopyFindUniqueArgs<ExtArgs>>
+    ): Prisma__gopyClient<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Gopy that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {gopyFindUniqueOrThrowArgs} args - Arguments to find a Gopy
+     * @example
+     * // Get one Gopy
+     * const gopy = await prisma.gopy.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends gopyFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gopyFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__gopyClient<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Gopy that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gopyFindFirstArgs} args - Arguments to find a Gopy
+     * @example
+     * // Get one Gopy
+     * const gopy = await prisma.gopy.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends gopyFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, gopyFindFirstArgs<ExtArgs>>
+    ): Prisma__gopyClient<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Gopy that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gopyFindFirstOrThrowArgs} args - Arguments to find a Gopy
+     * @example
+     * // Get one Gopy
+     * const gopy = await prisma.gopy.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends gopyFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gopyFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__gopyClient<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Gopies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gopyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Gopies
+     * const gopies = await prisma.gopy.findMany()
+     * 
+     * // Get first 10 Gopies
+     * const gopies = await prisma.gopy.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gopyWithIdOnly = await prisma.gopy.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends gopyFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gopyFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Gopy.
+     * @param {gopyCreateArgs} args - Arguments to create a Gopy.
+     * @example
+     * // Create one Gopy
+     * const Gopy = await prisma.gopy.create({
+     *   data: {
+     *     // ... data to create a Gopy
+     *   }
+     * })
+     * 
+    **/
+    create<T extends gopyCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, gopyCreateArgs<ExtArgs>>
+    ): Prisma__gopyClient<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Gopies.
+     * @param {gopyCreateManyArgs} args - Arguments to create many Gopies.
+     * @example
+     * // Create many Gopies
+     * const gopy = await prisma.gopy.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends gopyCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gopyCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Gopy.
+     * @param {gopyDeleteArgs} args - Arguments to delete one Gopy.
+     * @example
+     * // Delete one Gopy
+     * const Gopy = await prisma.gopy.delete({
+     *   where: {
+     *     // ... filter to delete one Gopy
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends gopyDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, gopyDeleteArgs<ExtArgs>>
+    ): Prisma__gopyClient<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Gopy.
+     * @param {gopyUpdateArgs} args - Arguments to update one Gopy.
+     * @example
+     * // Update one Gopy
+     * const gopy = await prisma.gopy.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends gopyUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, gopyUpdateArgs<ExtArgs>>
+    ): Prisma__gopyClient<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Gopies.
+     * @param {gopyDeleteManyArgs} args - Arguments to filter Gopies to delete.
+     * @example
+     * // Delete a few Gopies
+     * const { count } = await prisma.gopy.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends gopyDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gopyDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Gopies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gopyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Gopies
+     * const gopy = await prisma.gopy.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends gopyUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, gopyUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Gopy.
+     * @param {gopyUpsertArgs} args - Arguments to update or create a Gopy.
+     * @example
+     * // Update or create a Gopy
+     * const gopy = await prisma.gopy.upsert({
+     *   create: {
+     *     // ... data to create a Gopy
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Gopy we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends gopyUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, gopyUpsertArgs<ExtArgs>>
+    ): Prisma__gopyClient<$Result.GetResult<Prisma.$gopyPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Gopies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gopyCountArgs} args - Arguments to filter Gopies to count.
+     * @example
+     * // Count the number of Gopies
+     * const count = await prisma.gopy.count({
+     *   where: {
+     *     // ... the filter for the Gopies we want to count
+     *   }
+     * })
+    **/
+    count<T extends gopyCountArgs>(
+      args?: Subset<T, gopyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GopyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Gopy.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GopyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GopyAggregateArgs>(args: Subset<T, GopyAggregateArgs>): Prisma.PrismaPromise<GetGopyAggregateType<T>>
+
+    /**
+     * Group by Gopy.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gopyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends gopyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: gopyGroupByArgs['orderBy'] }
+        : { orderBy?: gopyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, gopyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGopyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the gopy model
+   */
+  readonly fields: gopyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for gopy.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__gopyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the gopy model
+   */ 
+  interface gopyFieldRefs {
+    readonly id: FieldRef<"gopy", 'Int'>
+    readonly hoten: FieldRef<"gopy", 'String'>
+    readonly email: FieldRef<"gopy", 'String'>
+    readonly sodienthoai: FieldRef<"gopy", 'String'>
+    readonly rating: FieldRef<"gopy", 'Int'>
+    readonly danhgiachitiet: FieldRef<"gopy", 'Json'>
+    readonly gopythem: FieldRef<"gopy", 'String'>
+    readonly createdAt: FieldRef<"gopy", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * gopy findUnique
+   */
+  export type gopyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * Filter, which gopy to fetch.
+     */
+    where: gopyWhereUniqueInput
+  }
+
+  /**
+   * gopy findUniqueOrThrow
+   */
+  export type gopyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * Filter, which gopy to fetch.
+     */
+    where: gopyWhereUniqueInput
+  }
+
+  /**
+   * gopy findFirst
+   */
+  export type gopyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * Filter, which gopy to fetch.
+     */
+    where?: gopyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gopies to fetch.
+     */
+    orderBy?: gopyOrderByWithRelationInput | gopyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for gopies.
+     */
+    cursor?: gopyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gopies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gopies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of gopies.
+     */
+    distinct?: GopyScalarFieldEnum | GopyScalarFieldEnum[]
+  }
+
+  /**
+   * gopy findFirstOrThrow
+   */
+  export type gopyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * Filter, which gopy to fetch.
+     */
+    where?: gopyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gopies to fetch.
+     */
+    orderBy?: gopyOrderByWithRelationInput | gopyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for gopies.
+     */
+    cursor?: gopyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gopies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gopies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of gopies.
+     */
+    distinct?: GopyScalarFieldEnum | GopyScalarFieldEnum[]
+  }
+
+  /**
+   * gopy findMany
+   */
+  export type gopyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * Filter, which gopies to fetch.
+     */
+    where?: gopyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gopies to fetch.
+     */
+    orderBy?: gopyOrderByWithRelationInput | gopyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing gopies.
+     */
+    cursor?: gopyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gopies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gopies.
+     */
+    skip?: number
+    distinct?: GopyScalarFieldEnum | GopyScalarFieldEnum[]
+  }
+
+  /**
+   * gopy create
+   */
+  export type gopyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * The data needed to create a gopy.
+     */
+    data: XOR<gopyCreateInput, gopyUncheckedCreateInput>
+  }
+
+  /**
+   * gopy createMany
+   */
+  export type gopyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many gopies.
+     */
+    data: gopyCreateManyInput | gopyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * gopy update
+   */
+  export type gopyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * The data needed to update a gopy.
+     */
+    data: XOR<gopyUpdateInput, gopyUncheckedUpdateInput>
+    /**
+     * Choose, which gopy to update.
+     */
+    where: gopyWhereUniqueInput
+  }
+
+  /**
+   * gopy updateMany
+   */
+  export type gopyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update gopies.
+     */
+    data: XOR<gopyUpdateManyMutationInput, gopyUncheckedUpdateManyInput>
+    /**
+     * Filter which gopies to update
+     */
+    where?: gopyWhereInput
+  }
+
+  /**
+   * gopy upsert
+   */
+  export type gopyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * The filter to search for the gopy to update in case it exists.
+     */
+    where: gopyWhereUniqueInput
+    /**
+     * In case the gopy found by the `where` argument doesn't exist, create a new gopy with this data.
+     */
+    create: XOR<gopyCreateInput, gopyUncheckedCreateInput>
+    /**
+     * In case the gopy was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<gopyUpdateInput, gopyUncheckedUpdateInput>
+  }
+
+  /**
+   * gopy delete
+   */
+  export type gopyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+    /**
+     * Filter which gopy to delete.
+     */
+    where: gopyWhereUniqueInput
+  }
+
+  /**
+   * gopy deleteMany
+   */
+  export type gopyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which gopies to delete
+     */
+    where?: gopyWhereInput
+  }
+
+  /**
+   * gopy without action
+   */
+  export type gopyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gopy
+     */
+    select?: gopySelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10799,6 +12982,7 @@ export namespace Prisma {
     trangthai: 'trangthai',
     creatAT: 'creatAT',
     updateAt: 'updateAt',
+    isLocked: 'isLocked',
     Role_id: 'Role_id'
   };
 
@@ -10874,6 +13058,21 @@ export namespace Prisma {
   export type DanhgiaScalarFieldEnum = (typeof DanhgiaScalarFieldEnum)[keyof typeof DanhgiaScalarFieldEnum]
 
 
+  export const BookingScalarFieldEnum: {
+    id: 'id',
+    hoten: 'hoten',
+    sodienthoai: 'sodienthoai',
+    soluong: 'soluong',
+    sotien: 'sotien',
+    tour_id: 'tour_id',
+    user_id: 'user_id',
+    createdAt: 'createdAt',
+    status: 'status'
+  };
+
+  export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
+
+
   export const ThanhtoanScalarFieldEnum: {
     id: 'id',
     phuongthuc: 'phuongthuc',
@@ -10898,6 +13097,20 @@ export namespace Prisma {
   export type HoadonScalarFieldEnum = (typeof HoadonScalarFieldEnum)[keyof typeof HoadonScalarFieldEnum]
 
 
+  export const GopyScalarFieldEnum: {
+    id: 'id',
+    hoten: 'hoten',
+    email: 'email',
+    sodienthoai: 'sodienthoai',
+    rating: 'rating',
+    danhgiachitiet: 'danhgiachitiet',
+    gopythem: 'gopythem',
+    createdAt: 'createdAt'
+  };
+
+  export type GopyScalarFieldEnum = (typeof GopyScalarFieldEnum)[keyof typeof GopyScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -10906,12 +13119,29 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const NullsOrder: {
     first: 'first',
     last: 'last'
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -10941,6 +13171,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -10963,11 +13207,13 @@ export namespace Prisma {
     trangthai?: StringNullableFilter<"User"> | string | null
     creatAT?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
+    isLocked?: BoolFilter<"User"> | boolean
     Role_id?: IntFilter<"User"> | number
     Role?: XOR<RoleNullableRelationFilter, RoleWhereInput> | null
     Lichtrinh?: LichtrinhListRelationFilter
     Hoadon?: HoadonListRelationFilter
     Danhgia?: DanhgiaListRelationFilter
+    Booking?: BookingListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -10980,11 +13226,13 @@ export namespace Prisma {
     trangthai?: SortOrderInput | SortOrder
     creatAT?: SortOrder
     updateAt?: SortOrder
+    isLocked?: SortOrder
     Role_id?: SortOrder
     Role?: RoleOrderByWithRelationInput
     Lichtrinh?: LichtrinhOrderByRelationAggregateInput
     Hoadon?: HoadonOrderByRelationAggregateInput
     Danhgia?: DanhgiaOrderByRelationAggregateInput
+    Booking?: BookingOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -11000,11 +13248,13 @@ export namespace Prisma {
     trangthai?: StringNullableFilter<"User"> | string | null
     creatAT?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
+    isLocked?: BoolFilter<"User"> | boolean
     Role_id?: IntFilter<"User"> | number
     Role?: XOR<RoleNullableRelationFilter, RoleWhereInput> | null
     Lichtrinh?: LichtrinhListRelationFilter
     Hoadon?: HoadonListRelationFilter
     Danhgia?: DanhgiaListRelationFilter
+    Booking?: BookingListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -11017,6 +13267,7 @@ export namespace Prisma {
     trangthai?: SortOrderInput | SortOrder
     creatAT?: SortOrder
     updateAt?: SortOrder
+    isLocked?: SortOrder
     Role_id?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -11038,6 +13289,7 @@ export namespace Prisma {
     trangthai?: StringNullableWithAggregatesFilter<"User"> | string | null
     creatAT?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    isLocked?: BoolWithAggregatesFilter<"User"> | boolean
     Role_id?: IntWithAggregatesFilter<"User"> | number
   }
 
@@ -11239,6 +13491,7 @@ export namespace Prisma {
     Diadiem_id?: IntFilter<"Goidichvu"> | number
     Diadiem?: XOR<DiadiemNullableRelationFilter, DiadiemWhereInput> | null
     LichtrinhCT?: LichtrinhCTListRelationFilter
+    Booking?: BookingListRelationFilter
   }
 
   export type GoidichvuOrderByWithRelationInput = {
@@ -11253,6 +13506,7 @@ export namespace Prisma {
     Diadiem_id?: SortOrder
     Diadiem?: DiadiemOrderByWithRelationInput
     LichtrinhCT?: LichtrinhCTOrderByRelationAggregateInput
+    Booking?: BookingOrderByRelationAggregateInput
   }
 
   export type GoidichvuWhereUniqueInput = Prisma.AtLeast<{
@@ -11270,6 +13524,7 @@ export namespace Prisma {
     Diadiem_id?: IntFilter<"Goidichvu"> | number
     Diadiem?: XOR<DiadiemNullableRelationFilter, DiadiemWhereInput> | null
     LichtrinhCT?: LichtrinhCTListRelationFilter
+    Booking?: BookingListRelationFilter
   }, "id">
 
   export type GoidichvuOrderByWithAggregationInput = {
@@ -11416,6 +13671,86 @@ export namespace Prisma {
     Lichtrinh_id?: IntWithAggregatesFilter<"Danhgia"> | number
   }
 
+  export type BookingWhereInput = {
+    AND?: BookingWhereInput | BookingWhereInput[]
+    OR?: BookingWhereInput[]
+    NOT?: BookingWhereInput | BookingWhereInput[]
+    id?: IntFilter<"Booking"> | number
+    hoten?: StringFilter<"Booking"> | string
+    sodienthoai?: StringFilter<"Booking"> | string
+    soluong?: IntFilter<"Booking"> | number
+    sotien?: IntFilter<"Booking"> | number
+    tour_id?: IntFilter<"Booking"> | number
+    user_id?: IntNullableFilter<"Booking"> | number | null
+    createdAt?: DateTimeFilter<"Booking"> | Date | string
+    status?: StringFilter<"Booking"> | string
+    Goidichvu?: XOR<GoidichvuRelationFilter, GoidichvuWhereInput>
+    User?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+  }
+
+  export type BookingOrderByWithRelationInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    sodienthoai?: SortOrder
+    soluong?: SortOrder
+    sotien?: SortOrder
+    tour_id?: SortOrder
+    user_id?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    status?: SortOrder
+    Goidichvu?: GoidichvuOrderByWithRelationInput
+    User?: UserOrderByWithRelationInput
+  }
+
+  export type BookingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BookingWhereInput | BookingWhereInput[]
+    OR?: BookingWhereInput[]
+    NOT?: BookingWhereInput | BookingWhereInput[]
+    hoten?: StringFilter<"Booking"> | string
+    sodienthoai?: StringFilter<"Booking"> | string
+    soluong?: IntFilter<"Booking"> | number
+    sotien?: IntFilter<"Booking"> | number
+    tour_id?: IntFilter<"Booking"> | number
+    user_id?: IntNullableFilter<"Booking"> | number | null
+    createdAt?: DateTimeFilter<"Booking"> | Date | string
+    status?: StringFilter<"Booking"> | string
+    Goidichvu?: XOR<GoidichvuRelationFilter, GoidichvuWhereInput>
+    User?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type BookingOrderByWithAggregationInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    sodienthoai?: SortOrder
+    soluong?: SortOrder
+    sotien?: SortOrder
+    tour_id?: SortOrder
+    user_id?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    status?: SortOrder
+    _count?: BookingCountOrderByAggregateInput
+    _avg?: BookingAvgOrderByAggregateInput
+    _max?: BookingMaxOrderByAggregateInput
+    _min?: BookingMinOrderByAggregateInput
+    _sum?: BookingSumOrderByAggregateInput
+  }
+
+  export type BookingScalarWhereWithAggregatesInput = {
+    AND?: BookingScalarWhereWithAggregatesInput | BookingScalarWhereWithAggregatesInput[]
+    OR?: BookingScalarWhereWithAggregatesInput[]
+    NOT?: BookingScalarWhereWithAggregatesInput | BookingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Booking"> | number
+    hoten?: StringWithAggregatesFilter<"Booking"> | string
+    sodienthoai?: StringWithAggregatesFilter<"Booking"> | string
+    soluong?: IntWithAggregatesFilter<"Booking"> | number
+    sotien?: IntWithAggregatesFilter<"Booking"> | number
+    tour_id?: IntWithAggregatesFilter<"Booking"> | number
+    user_id?: IntNullableWithAggregatesFilter<"Booking"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
+    status?: StringWithAggregatesFilter<"Booking"> | string
+  }
+
   export type ThanhtoanWhereInput = {
     AND?: ThanhtoanWhereInput | ThanhtoanWhereInput[]
     OR?: ThanhtoanWhereInput[]
@@ -11546,6 +13881,75 @@ export namespace Prisma {
     Lichtrinh_id?: IntWithAggregatesFilter<"Hoadon"> | number
   }
 
+  export type gopyWhereInput = {
+    AND?: gopyWhereInput | gopyWhereInput[]
+    OR?: gopyWhereInput[]
+    NOT?: gopyWhereInput | gopyWhereInput[]
+    id?: IntFilter<"gopy"> | number
+    hoten?: StringFilter<"gopy"> | string
+    email?: StringFilter<"gopy"> | string
+    sodienthoai?: StringFilter<"gopy"> | string
+    rating?: IntFilter<"gopy"> | number
+    danhgiachitiet?: JsonNullableFilter<"gopy">
+    gopythem?: StringNullableFilter<"gopy"> | string | null
+    createdAt?: DateTimeFilter<"gopy"> | Date | string
+  }
+
+  export type gopyOrderByWithRelationInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    email?: SortOrder
+    sodienthoai?: SortOrder
+    rating?: SortOrder
+    danhgiachitiet?: SortOrderInput | SortOrder
+    gopythem?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type gopyWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: gopyWhereInput | gopyWhereInput[]
+    OR?: gopyWhereInput[]
+    NOT?: gopyWhereInput | gopyWhereInput[]
+    hoten?: StringFilter<"gopy"> | string
+    email?: StringFilter<"gopy"> | string
+    sodienthoai?: StringFilter<"gopy"> | string
+    rating?: IntFilter<"gopy"> | number
+    danhgiachitiet?: JsonNullableFilter<"gopy">
+    gopythem?: StringNullableFilter<"gopy"> | string | null
+    createdAt?: DateTimeFilter<"gopy"> | Date | string
+  }, "id">
+
+  export type gopyOrderByWithAggregationInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    email?: SortOrder
+    sodienthoai?: SortOrder
+    rating?: SortOrder
+    danhgiachitiet?: SortOrderInput | SortOrder
+    gopythem?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: gopyCountOrderByAggregateInput
+    _avg?: gopyAvgOrderByAggregateInput
+    _max?: gopyMaxOrderByAggregateInput
+    _min?: gopyMinOrderByAggregateInput
+    _sum?: gopySumOrderByAggregateInput
+  }
+
+  export type gopyScalarWhereWithAggregatesInput = {
+    AND?: gopyScalarWhereWithAggregatesInput | gopyScalarWhereWithAggregatesInput[]
+    OR?: gopyScalarWhereWithAggregatesInput[]
+    NOT?: gopyScalarWhereWithAggregatesInput | gopyScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"gopy"> | number
+    hoten?: StringWithAggregatesFilter<"gopy"> | string
+    email?: StringWithAggregatesFilter<"gopy"> | string
+    sodienthoai?: StringWithAggregatesFilter<"gopy"> | string
+    rating?: IntWithAggregatesFilter<"gopy"> | number
+    danhgiachitiet?: JsonNullableWithAggregatesFilter<"gopy">
+    gopythem?: StringNullableWithAggregatesFilter<"gopy"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"gopy"> | Date | string
+  }
+
   export type UserCreateInput = {
     hoten?: string | null
     email?: string | null
@@ -11555,10 +13959,12 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role?: RoleCreateNestedOneWithoutUserInput
     Lichtrinh?: LichtrinhCreateNestedManyWithoutUserInput
     Hoadon?: HoadonCreateNestedManyWithoutUserInput
     Danhgia?: DanhgiaCreateNestedManyWithoutUserInput
+    Booking?: BookingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -11571,10 +13977,12 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role_id: number
     Lichtrinh?: LichtrinhUncheckedCreateNestedManyWithoutUserInput
     Hoadon?: HoadonUncheckedCreateNestedManyWithoutUserInput
     Danhgia?: DanhgiaUncheckedCreateNestedManyWithoutUserInput
+    Booking?: BookingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -11586,10 +13994,12 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role?: RoleUpdateOneWithoutUserNestedInput
     Lichtrinh?: LichtrinhUpdateManyWithoutUserNestedInput
     Hoadon?: HoadonUpdateManyWithoutUserNestedInput
     Danhgia?: DanhgiaUpdateManyWithoutUserNestedInput
+    Booking?: BookingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -11602,10 +14012,12 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role_id?: IntFieldUpdateOperationsInput | number
     Lichtrinh?: LichtrinhUncheckedUpdateManyWithoutUserNestedInput
     Hoadon?: HoadonUncheckedUpdateManyWithoutUserNestedInput
     Danhgia?: DanhgiaUncheckedUpdateManyWithoutUserNestedInput
+    Booking?: BookingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -11618,6 +14030,7 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role_id: number
   }
 
@@ -11630,6 +14043,7 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -11642,6 +14056,7 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -11827,6 +14242,7 @@ export namespace Prisma {
     sochoconlai?: number | null
     Diadiem?: DiadiemCreateNestedOneWithoutGoidichvuInput
     LichtrinhCT?: LichtrinhCTCreateNestedManyWithoutGoidichvuInput
+    Booking?: BookingCreateNestedManyWithoutGoidichvuInput
   }
 
   export type GoidichvuUncheckedCreateInput = {
@@ -11840,6 +14256,7 @@ export namespace Prisma {
     sochoconlai?: number | null
     Diadiem_id: number
     LichtrinhCT?: LichtrinhCTUncheckedCreateNestedManyWithoutGoidichvuInput
+    Booking?: BookingUncheckedCreateNestedManyWithoutGoidichvuInput
   }
 
   export type GoidichvuUpdateInput = {
@@ -11852,6 +14269,7 @@ export namespace Prisma {
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
     Diadiem?: DiadiemUpdateOneWithoutGoidichvuNestedInput
     LichtrinhCT?: LichtrinhCTUpdateManyWithoutGoidichvuNestedInput
+    Booking?: BookingUpdateManyWithoutGoidichvuNestedInput
   }
 
   export type GoidichvuUncheckedUpdateInput = {
@@ -11865,6 +14283,7 @@ export namespace Prisma {
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
     Diadiem_id?: IntFieldUpdateOperationsInput | number
     LichtrinhCT?: LichtrinhCTUncheckedUpdateManyWithoutGoidichvuNestedInput
+    Booking?: BookingUncheckedUpdateManyWithoutGoidichvuNestedInput
   }
 
   export type GoidichvuCreateManyInput = {
@@ -12002,6 +14421,85 @@ export namespace Prisma {
     Lichtrinh_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type BookingCreateInput = {
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    createdAt?: Date | string
+    status?: string
+    Goidichvu: GoidichvuCreateNestedOneWithoutBookingInput
+    User?: UserCreateNestedOneWithoutBookingInput
+  }
+
+  export type BookingUncheckedCreateInput = {
+    id?: number
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    tour_id: number
+    user_id?: number | null
+    createdAt?: Date | string
+    status?: string
+  }
+
+  export type BookingUpdateInput = {
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    Goidichvu?: GoidichvuUpdateOneRequiredWithoutBookingNestedInput
+    User?: UserUpdateOneWithoutBookingNestedInput
+  }
+
+  export type BookingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    tour_id?: IntFieldUpdateOperationsInput | number
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BookingCreateManyInput = {
+    id?: number
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    tour_id: number
+    user_id?: number | null
+    createdAt?: Date | string
+    status?: string
+  }
+
+  export type BookingUpdateManyMutationInput = {
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BookingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    tour_id?: IntFieldUpdateOperationsInput | number
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ThanhtoanCreateInput = {
     phuongthuc?: string | null
     sotien: number
@@ -12123,6 +14621,80 @@ export namespace Prisma {
     Lichtrinh_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type gopyCreateInput = {
+    hoten: string
+    email: string
+    sodienthoai: string
+    rating: number
+    danhgiachitiet?: NullableJsonNullValueInput | InputJsonValue
+    gopythem?: string | null
+    createdAt?: Date | string
+  }
+
+  export type gopyUncheckedCreateInput = {
+    id?: number
+    hoten: string
+    email: string
+    sodienthoai: string
+    rating: number
+    danhgiachitiet?: NullableJsonNullValueInput | InputJsonValue
+    gopythem?: string | null
+    createdAt?: Date | string
+  }
+
+  export type gopyUpdateInput = {
+    hoten?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    danhgiachitiet?: NullableJsonNullValueInput | InputJsonValue
+    gopythem?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gopyUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    danhgiachitiet?: NullableJsonNullValueInput | InputJsonValue
+    gopythem?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gopyCreateManyInput = {
+    id?: number
+    hoten: string
+    email: string
+    sodienthoai: string
+    rating: number
+    danhgiachitiet?: NullableJsonNullValueInput | InputJsonValue
+    gopythem?: string | null
+    createdAt?: Date | string
+  }
+
+  export type gopyUpdateManyMutationInput = {
+    hoten?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    danhgiachitiet?: NullableJsonNullValueInput | InputJsonValue
+    gopythem?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gopyUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    danhgiachitiet?: NullableJsonNullValueInput | InputJsonValue
+    gopythem?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -12159,6 +14731,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type RoleNullableRelationFilter = {
     is?: RoleWhereInput | null
     isNot?: RoleWhereInput | null
@@ -12182,6 +14759,12 @@ export namespace Prisma {
     none?: DanhgiaWhereInput
   }
 
+  export type BookingListRelationFilter = {
+    every?: BookingWhereInput
+    some?: BookingWhereInput
+    none?: BookingWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -12199,6 +14782,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type BookingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     hoten?: SortOrder
@@ -12209,6 +14796,7 @@ export namespace Prisma {
     trangthai?: SortOrder
     creatAT?: SortOrder
     updateAt?: SortOrder
+    isLocked?: SortOrder
     Role_id?: SortOrder
   }
 
@@ -12227,6 +14815,7 @@ export namespace Prisma {
     trangthai?: SortOrder
     creatAT?: SortOrder
     updateAt?: SortOrder
+    isLocked?: SortOrder
     Role_id?: SortOrder
   }
 
@@ -12240,6 +14829,7 @@ export namespace Prisma {
     trangthai?: SortOrder
     creatAT?: SortOrder
     updateAt?: SortOrder
+    isLocked?: SortOrder
     Role_id?: SortOrder
   }
 
@@ -12293,6 +14883,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type UserListRelationFilter = {
@@ -12618,6 +15216,94 @@ export namespace Prisma {
     Lichtrinh_id?: SortOrder
   }
 
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type GoidichvuRelationFilter = {
+    is?: GoidichvuWhereInput
+    isNot?: GoidichvuWhereInput
+  }
+
+  export type BookingCountOrderByAggregateInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    sodienthoai?: SortOrder
+    soluong?: SortOrder
+    sotien?: SortOrder
+    tour_id?: SortOrder
+    user_id?: SortOrder
+    createdAt?: SortOrder
+    status?: SortOrder
+  }
+
+  export type BookingAvgOrderByAggregateInput = {
+    id?: SortOrder
+    soluong?: SortOrder
+    sotien?: SortOrder
+    tour_id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type BookingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    sodienthoai?: SortOrder
+    soluong?: SortOrder
+    sotien?: SortOrder
+    tour_id?: SortOrder
+    user_id?: SortOrder
+    createdAt?: SortOrder
+    status?: SortOrder
+  }
+
+  export type BookingMinOrderByAggregateInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    sodienthoai?: SortOrder
+    soluong?: SortOrder
+    sotien?: SortOrder
+    tour_id?: SortOrder
+    user_id?: SortOrder
+    createdAt?: SortOrder
+    status?: SortOrder
+  }
+
+  export type BookingSumOrderByAggregateInput = {
+    id?: SortOrder
+    soluong?: SortOrder
+    sotien?: SortOrder
+    tour_id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
   export type ThanhtoanCountOrderByAggregateInput = {
     id?: SortOrder
     phuongthuc?: SortOrder
@@ -12702,6 +15388,94 @@ export namespace Prisma {
     Thanhtoan_id?: SortOrder
     Lichtrinh_id?: SortOrder
   }
+  export type JsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type gopyCountOrderByAggregateInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    email?: SortOrder
+    sodienthoai?: SortOrder
+    rating?: SortOrder
+    danhgiachitiet?: SortOrder
+    gopythem?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type gopyAvgOrderByAggregateInput = {
+    id?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type gopyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    email?: SortOrder
+    sodienthoai?: SortOrder
+    rating?: SortOrder
+    gopythem?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type gopyMinOrderByAggregateInput = {
+    id?: SortOrder
+    hoten?: SortOrder
+    email?: SortOrder
+    sodienthoai?: SortOrder
+    rating?: SortOrder
+    gopythem?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type gopySumOrderByAggregateInput = {
+    id?: SortOrder
+    rating?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
 
   export type RoleCreateNestedOneWithoutUserInput = {
     create?: XOR<RoleCreateWithoutUserInput, RoleUncheckedCreateWithoutUserInput>
@@ -12730,6 +15504,13 @@ export namespace Prisma {
     connect?: DanhgiaWhereUniqueInput | DanhgiaWhereUniqueInput[]
   }
 
+  export type BookingCreateNestedManyWithoutUserInput = {
+    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
+    createMany?: BookingCreateManyUserInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
   export type LichtrinhUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<LichtrinhCreateWithoutUserInput, LichtrinhUncheckedCreateWithoutUserInput> | LichtrinhCreateWithoutUserInput[] | LichtrinhUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LichtrinhCreateOrConnectWithoutUserInput | LichtrinhCreateOrConnectWithoutUserInput[]
@@ -12751,12 +15532,23 @@ export namespace Prisma {
     connect?: DanhgiaWhereUniqueInput | DanhgiaWhereUniqueInput[]
   }
 
+  export type BookingUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
+    createMany?: BookingCreateManyUserInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type RoleUpdateOneWithoutUserNestedInput = {
@@ -12811,6 +15603,20 @@ export namespace Prisma {
     deleteMany?: DanhgiaScalarWhereInput | DanhgiaScalarWhereInput[]
   }
 
+  export type BookingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutUserInput | BookingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BookingCreateManyUserInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutUserInput | BookingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutUserInput | BookingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -12859,6 +15665,20 @@ export namespace Prisma {
     update?: DanhgiaUpdateWithWhereUniqueWithoutUserInput | DanhgiaUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: DanhgiaUpdateManyWithWhereWithoutUserInput | DanhgiaUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: DanhgiaScalarWhereInput | DanhgiaScalarWhereInput[]
+  }
+
+  export type BookingUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutUserInput | BookingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BookingCreateManyUserInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutUserInput | BookingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutUserInput | BookingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
   }
 
   export type UserCreateNestedManyWithoutRoleInput = {
@@ -13094,11 +15914,25 @@ export namespace Prisma {
     connect?: LichtrinhCTWhereUniqueInput | LichtrinhCTWhereUniqueInput[]
   }
 
+  export type BookingCreateNestedManyWithoutGoidichvuInput = {
+    create?: XOR<BookingCreateWithoutGoidichvuInput, BookingUncheckedCreateWithoutGoidichvuInput> | BookingCreateWithoutGoidichvuInput[] | BookingUncheckedCreateWithoutGoidichvuInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutGoidichvuInput | BookingCreateOrConnectWithoutGoidichvuInput[]
+    createMany?: BookingCreateManyGoidichvuInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
   export type LichtrinhCTUncheckedCreateNestedManyWithoutGoidichvuInput = {
     create?: XOR<LichtrinhCTCreateWithoutGoidichvuInput, LichtrinhCTUncheckedCreateWithoutGoidichvuInput> | LichtrinhCTCreateWithoutGoidichvuInput[] | LichtrinhCTUncheckedCreateWithoutGoidichvuInput[]
     connectOrCreate?: LichtrinhCTCreateOrConnectWithoutGoidichvuInput | LichtrinhCTCreateOrConnectWithoutGoidichvuInput[]
     createMany?: LichtrinhCTCreateManyGoidichvuInputEnvelope
     connect?: LichtrinhCTWhereUniqueInput | LichtrinhCTWhereUniqueInput[]
+  }
+
+  export type BookingUncheckedCreateNestedManyWithoutGoidichvuInput = {
+    create?: XOR<BookingCreateWithoutGoidichvuInput, BookingUncheckedCreateWithoutGoidichvuInput> | BookingCreateWithoutGoidichvuInput[] | BookingUncheckedCreateWithoutGoidichvuInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutGoidichvuInput | BookingCreateOrConnectWithoutGoidichvuInput[]
+    createMany?: BookingCreateManyGoidichvuInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -13133,6 +15967,20 @@ export namespace Prisma {
     deleteMany?: LichtrinhCTScalarWhereInput | LichtrinhCTScalarWhereInput[]
   }
 
+  export type BookingUpdateManyWithoutGoidichvuNestedInput = {
+    create?: XOR<BookingCreateWithoutGoidichvuInput, BookingUncheckedCreateWithoutGoidichvuInput> | BookingCreateWithoutGoidichvuInput[] | BookingUncheckedCreateWithoutGoidichvuInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutGoidichvuInput | BookingCreateOrConnectWithoutGoidichvuInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutGoidichvuInput | BookingUpsertWithWhereUniqueWithoutGoidichvuInput[]
+    createMany?: BookingCreateManyGoidichvuInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutGoidichvuInput | BookingUpdateWithWhereUniqueWithoutGoidichvuInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutGoidichvuInput | BookingUpdateManyWithWhereWithoutGoidichvuInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
+  }
+
   export type LichtrinhCTUncheckedUpdateManyWithoutGoidichvuNestedInput = {
     create?: XOR<LichtrinhCTCreateWithoutGoidichvuInput, LichtrinhCTUncheckedCreateWithoutGoidichvuInput> | LichtrinhCTCreateWithoutGoidichvuInput[] | LichtrinhCTUncheckedCreateWithoutGoidichvuInput[]
     connectOrCreate?: LichtrinhCTCreateOrConnectWithoutGoidichvuInput | LichtrinhCTCreateOrConnectWithoutGoidichvuInput[]
@@ -13145,6 +15993,20 @@ export namespace Prisma {
     update?: LichtrinhCTUpdateWithWhereUniqueWithoutGoidichvuInput | LichtrinhCTUpdateWithWhereUniqueWithoutGoidichvuInput[]
     updateMany?: LichtrinhCTUpdateManyWithWhereWithoutGoidichvuInput | LichtrinhCTUpdateManyWithWhereWithoutGoidichvuInput[]
     deleteMany?: LichtrinhCTScalarWhereInput | LichtrinhCTScalarWhereInput[]
+  }
+
+  export type BookingUncheckedUpdateManyWithoutGoidichvuNestedInput = {
+    create?: XOR<BookingCreateWithoutGoidichvuInput, BookingUncheckedCreateWithoutGoidichvuInput> | BookingCreateWithoutGoidichvuInput[] | BookingUncheckedCreateWithoutGoidichvuInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutGoidichvuInput | BookingCreateOrConnectWithoutGoidichvuInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutGoidichvuInput | BookingUpsertWithWhereUniqueWithoutGoidichvuInput[]
+    createMany?: BookingCreateManyGoidichvuInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutGoidichvuInput | BookingUpdateWithWhereUniqueWithoutGoidichvuInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutGoidichvuInput | BookingUpdateManyWithWhereWithoutGoidichvuInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
   }
 
   export type GoidichvuCreateNestedManyWithoutDiadiemInput = {
@@ -13219,6 +16081,40 @@ export namespace Prisma {
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDanhgiaInput, UserUpdateWithoutDanhgiaInput>, UserUncheckedUpdateWithoutDanhgiaInput>
+  }
+
+  export type GoidichvuCreateNestedOneWithoutBookingInput = {
+    create?: XOR<GoidichvuCreateWithoutBookingInput, GoidichvuUncheckedCreateWithoutBookingInput>
+    connectOrCreate?: GoidichvuCreateOrConnectWithoutBookingInput
+    connect?: GoidichvuWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutBookingInput = {
+    create?: XOR<UserCreateWithoutBookingInput, UserUncheckedCreateWithoutBookingInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBookingInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type GoidichvuUpdateOneRequiredWithoutBookingNestedInput = {
+    create?: XOR<GoidichvuCreateWithoutBookingInput, GoidichvuUncheckedCreateWithoutBookingInput>
+    connectOrCreate?: GoidichvuCreateOrConnectWithoutBookingInput
+    upsert?: GoidichvuUpsertWithoutBookingInput
+    connect?: GoidichvuWhereUniqueInput
+    update?: XOR<XOR<GoidichvuUpdateToOneWithWhereWithoutBookingInput, GoidichvuUpdateWithoutBookingInput>, GoidichvuUncheckedUpdateWithoutBookingInput>
+  }
+
+  export type UserUpdateOneWithoutBookingNestedInput = {
+    create?: XOR<UserCreateWithoutBookingInput, UserUncheckedCreateWithoutBookingInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBookingInput
+    upsert?: UserUpsertWithoutBookingInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBookingInput, UserUpdateWithoutBookingInput>, UserUncheckedUpdateWithoutBookingInput>
   }
 
   export type HoadonCreateNestedManyWithoutThanhtoanInput = {
@@ -13347,6 +16243,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -13416,6 +16317,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -13466,6 +16375,59 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type RoleCreateWithoutUserInput = {
@@ -13556,6 +16518,37 @@ export namespace Prisma {
 
   export type DanhgiaCreateManyUserInputEnvelope = {
     data: DanhgiaCreateManyUserInput | DanhgiaCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BookingCreateWithoutUserInput = {
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    createdAt?: Date | string
+    status?: string
+    Goidichvu: GoidichvuCreateNestedOneWithoutBookingInput
+  }
+
+  export type BookingUncheckedCreateWithoutUserInput = {
+    id?: number
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    tour_id: number
+    createdAt?: Date | string
+    status?: string
+  }
+
+  export type BookingCreateOrConnectWithoutUserInput = {
+    where: BookingWhereUniqueInput
+    create: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput>
+  }
+
+  export type BookingCreateManyUserInputEnvelope = {
+    data: BookingCreateManyUserInput | BookingCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -13661,6 +16654,37 @@ export namespace Prisma {
     Lichtrinh_id?: IntFilter<"Danhgia"> | number
   }
 
+  export type BookingUpsertWithWhereUniqueWithoutUserInput = {
+    where: BookingWhereUniqueInput
+    update: XOR<BookingUpdateWithoutUserInput, BookingUncheckedUpdateWithoutUserInput>
+    create: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput>
+  }
+
+  export type BookingUpdateWithWhereUniqueWithoutUserInput = {
+    where: BookingWhereUniqueInput
+    data: XOR<BookingUpdateWithoutUserInput, BookingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type BookingUpdateManyWithWhereWithoutUserInput = {
+    where: BookingScalarWhereInput
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type BookingScalarWhereInput = {
+    AND?: BookingScalarWhereInput | BookingScalarWhereInput[]
+    OR?: BookingScalarWhereInput[]
+    NOT?: BookingScalarWhereInput | BookingScalarWhereInput[]
+    id?: IntFilter<"Booking"> | number
+    hoten?: StringFilter<"Booking"> | string
+    sodienthoai?: StringFilter<"Booking"> | string
+    soluong?: IntFilter<"Booking"> | number
+    sotien?: IntFilter<"Booking"> | number
+    tour_id?: IntFilter<"Booking"> | number
+    user_id?: IntNullableFilter<"Booking"> | number | null
+    createdAt?: DateTimeFilter<"Booking"> | Date | string
+    status?: StringFilter<"Booking"> | string
+  }
+
   export type UserCreateWithoutRoleInput = {
     hoten?: string | null
     email?: string | null
@@ -13670,9 +16694,11 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Lichtrinh?: LichtrinhCreateNestedManyWithoutUserInput
     Hoadon?: HoadonCreateNestedManyWithoutUserInput
     Danhgia?: DanhgiaCreateNestedManyWithoutUserInput
+    Booking?: BookingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRoleInput = {
@@ -13685,9 +16711,11 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Lichtrinh?: LichtrinhUncheckedCreateNestedManyWithoutUserInput
     Hoadon?: HoadonUncheckedCreateNestedManyWithoutUserInput
     Danhgia?: DanhgiaUncheckedCreateNestedManyWithoutUserInput
+    Booking?: BookingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRoleInput = {
@@ -13729,6 +16757,7 @@ export namespace Prisma {
     trangthai?: StringNullableFilter<"User"> | string | null
     creatAT?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
+    isLocked?: BoolFilter<"User"> | boolean
     Role_id?: IntFilter<"User"> | number
   }
 
@@ -13741,9 +16770,11 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role?: RoleCreateNestedOneWithoutUserInput
     Hoadon?: HoadonCreateNestedManyWithoutUserInput
     Danhgia?: DanhgiaCreateNestedManyWithoutUserInput
+    Booking?: BookingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLichtrinhInput = {
@@ -13756,9 +16787,11 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role_id: number
     Hoadon?: HoadonUncheckedCreateNestedManyWithoutUserInput
     Danhgia?: DanhgiaUncheckedCreateNestedManyWithoutUserInput
+    Booking?: BookingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLichtrinhInput = {
@@ -13863,9 +16896,11 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role?: RoleUpdateOneWithoutUserNestedInput
     Hoadon?: HoadonUpdateManyWithoutUserNestedInput
     Danhgia?: DanhgiaUpdateManyWithoutUserNestedInput
+    Booking?: BookingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLichtrinhInput = {
@@ -13878,9 +16913,11 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role_id?: IntFieldUpdateOperationsInput | number
     Hoadon?: HoadonUncheckedUpdateManyWithoutUserNestedInput
     Danhgia?: DanhgiaUncheckedUpdateManyWithoutUserNestedInput
+    Booking?: BookingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type HoadonUpsertWithWhereUniqueWithoutLichtrinhInput = {
@@ -13978,6 +17015,7 @@ export namespace Prisma {
     hinhanh?: string | null
     sochoconlai?: number | null
     Diadiem?: DiadiemCreateNestedOneWithoutGoidichvuInput
+    Booking?: BookingCreateNestedManyWithoutGoidichvuInput
   }
 
   export type GoidichvuUncheckedCreateWithoutLichtrinhCTInput = {
@@ -13990,6 +17028,7 @@ export namespace Prisma {
     hinhanh?: string | null
     sochoconlai?: number | null
     Diadiem_id: number
+    Booking?: BookingUncheckedCreateNestedManyWithoutGoidichvuInput
   }
 
   export type GoidichvuCreateOrConnectWithoutLichtrinhCTInput = {
@@ -14047,6 +17086,7 @@ export namespace Prisma {
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
     Diadiem?: DiadiemUpdateOneWithoutGoidichvuNestedInput
+    Booking?: BookingUpdateManyWithoutGoidichvuNestedInput
   }
 
   export type GoidichvuUncheckedUpdateWithoutLichtrinhCTInput = {
@@ -14059,6 +17099,7 @@ export namespace Prisma {
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
     Diadiem_id?: IntFieldUpdateOperationsInput | number
+    Booking?: BookingUncheckedUpdateManyWithoutGoidichvuNestedInput
   }
 
   export type DiadiemCreateWithoutGoidichvuInput = {
@@ -14110,6 +17151,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type BookingCreateWithoutGoidichvuInput = {
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    createdAt?: Date | string
+    status?: string
+    User?: UserCreateNestedOneWithoutBookingInput
+  }
+
+  export type BookingUncheckedCreateWithoutGoidichvuInput = {
+    id?: number
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    user_id?: number | null
+    createdAt?: Date | string
+    status?: string
+  }
+
+  export type BookingCreateOrConnectWithoutGoidichvuInput = {
+    where: BookingWhereUniqueInput
+    create: XOR<BookingCreateWithoutGoidichvuInput, BookingUncheckedCreateWithoutGoidichvuInput>
+  }
+
+  export type BookingCreateManyGoidichvuInputEnvelope = {
+    data: BookingCreateManyGoidichvuInput | BookingCreateManyGoidichvuInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DiadiemUpsertWithoutGoidichvuInput = {
     update: XOR<DiadiemUpdateWithoutGoidichvuInput, DiadiemUncheckedUpdateWithoutGoidichvuInput>
     create: XOR<DiadiemCreateWithoutGoidichvuInput, DiadiemUncheckedCreateWithoutGoidichvuInput>
@@ -14152,6 +17224,22 @@ export namespace Prisma {
     data: XOR<LichtrinhCTUpdateManyMutationInput, LichtrinhCTUncheckedUpdateManyWithoutGoidichvuInput>
   }
 
+  export type BookingUpsertWithWhereUniqueWithoutGoidichvuInput = {
+    where: BookingWhereUniqueInput
+    update: XOR<BookingUpdateWithoutGoidichvuInput, BookingUncheckedUpdateWithoutGoidichvuInput>
+    create: XOR<BookingCreateWithoutGoidichvuInput, BookingUncheckedCreateWithoutGoidichvuInput>
+  }
+
+  export type BookingUpdateWithWhereUniqueWithoutGoidichvuInput = {
+    where: BookingWhereUniqueInput
+    data: XOR<BookingUpdateWithoutGoidichvuInput, BookingUncheckedUpdateWithoutGoidichvuInput>
+  }
+
+  export type BookingUpdateManyWithWhereWithoutGoidichvuInput = {
+    where: BookingScalarWhereInput
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutGoidichvuInput>
+  }
+
   export type GoidichvuCreateWithoutDiadiemInput = {
     tengoi?: string | null
     mota?: string | null
@@ -14161,6 +17249,7 @@ export namespace Prisma {
     hinhanh?: string | null
     sochoconlai?: number | null
     LichtrinhCT?: LichtrinhCTCreateNestedManyWithoutGoidichvuInput
+    Booking?: BookingCreateNestedManyWithoutGoidichvuInput
   }
 
   export type GoidichvuUncheckedCreateWithoutDiadiemInput = {
@@ -14173,6 +17262,7 @@ export namespace Prisma {
     hinhanh?: string | null
     sochoconlai?: number | null
     LichtrinhCT?: LichtrinhCTUncheckedCreateNestedManyWithoutGoidichvuInput
+    Booking?: BookingUncheckedCreateNestedManyWithoutGoidichvuInput
   }
 
   export type GoidichvuCreateOrConnectWithoutDiadiemInput = {
@@ -14249,9 +17339,11 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role?: RoleCreateNestedOneWithoutUserInput
     Lichtrinh?: LichtrinhCreateNestedManyWithoutUserInput
     Hoadon?: HoadonCreateNestedManyWithoutUserInput
+    Booking?: BookingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDanhgiaInput = {
@@ -14264,9 +17356,11 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role_id: number
     Lichtrinh?: LichtrinhUncheckedCreateNestedManyWithoutUserInput
     Hoadon?: HoadonUncheckedCreateNestedManyWithoutUserInput
+    Booking?: BookingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDanhgiaInput = {
@@ -14324,9 +17418,11 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role?: RoleUpdateOneWithoutUserNestedInput
     Lichtrinh?: LichtrinhUpdateManyWithoutUserNestedInput
     Hoadon?: HoadonUpdateManyWithoutUserNestedInput
+    Booking?: BookingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDanhgiaInput = {
@@ -14339,9 +17435,159 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role_id?: IntFieldUpdateOperationsInput | number
     Lichtrinh?: LichtrinhUncheckedUpdateManyWithoutUserNestedInput
     Hoadon?: HoadonUncheckedUpdateManyWithoutUserNestedInput
+    Booking?: BookingUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type GoidichvuCreateWithoutBookingInput = {
+    tengoi?: string | null
+    mota?: string | null
+    gia: number
+    thoiluongngay?: string | null
+    trangthai?: string | null
+    hinhanh?: string | null
+    sochoconlai?: number | null
+    Diadiem?: DiadiemCreateNestedOneWithoutGoidichvuInput
+    LichtrinhCT?: LichtrinhCTCreateNestedManyWithoutGoidichvuInput
+  }
+
+  export type GoidichvuUncheckedCreateWithoutBookingInput = {
+    id?: number
+    tengoi?: string | null
+    mota?: string | null
+    gia: number
+    thoiluongngay?: string | null
+    trangthai?: string | null
+    hinhanh?: string | null
+    sochoconlai?: number | null
+    Diadiem_id: number
+    LichtrinhCT?: LichtrinhCTUncheckedCreateNestedManyWithoutGoidichvuInput
+  }
+
+  export type GoidichvuCreateOrConnectWithoutBookingInput = {
+    where: GoidichvuWhereUniqueInput
+    create: XOR<GoidichvuCreateWithoutBookingInput, GoidichvuUncheckedCreateWithoutBookingInput>
+  }
+
+  export type UserCreateWithoutBookingInput = {
+    hoten?: string | null
+    email?: string | null
+    matkhau?: string | null
+    sodienthoai?: string | null
+    diachi?: string | null
+    trangthai?: string | null
+    creatAT?: Date | string
+    updateAt?: Date | string
+    isLocked?: boolean
+    Role?: RoleCreateNestedOneWithoutUserInput
+    Lichtrinh?: LichtrinhCreateNestedManyWithoutUserInput
+    Hoadon?: HoadonCreateNestedManyWithoutUserInput
+    Danhgia?: DanhgiaCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutBookingInput = {
+    id?: number
+    hoten?: string | null
+    email?: string | null
+    matkhau?: string | null
+    sodienthoai?: string | null
+    diachi?: string | null
+    trangthai?: string | null
+    creatAT?: Date | string
+    updateAt?: Date | string
+    isLocked?: boolean
+    Role_id: number
+    Lichtrinh?: LichtrinhUncheckedCreateNestedManyWithoutUserInput
+    Hoadon?: HoadonUncheckedCreateNestedManyWithoutUserInput
+    Danhgia?: DanhgiaUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutBookingInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBookingInput, UserUncheckedCreateWithoutBookingInput>
+  }
+
+  export type GoidichvuUpsertWithoutBookingInput = {
+    update: XOR<GoidichvuUpdateWithoutBookingInput, GoidichvuUncheckedUpdateWithoutBookingInput>
+    create: XOR<GoidichvuCreateWithoutBookingInput, GoidichvuUncheckedCreateWithoutBookingInput>
+    where?: GoidichvuWhereInput
+  }
+
+  export type GoidichvuUpdateToOneWithWhereWithoutBookingInput = {
+    where?: GoidichvuWhereInput
+    data: XOR<GoidichvuUpdateWithoutBookingInput, GoidichvuUncheckedUpdateWithoutBookingInput>
+  }
+
+  export type GoidichvuUpdateWithoutBookingInput = {
+    tengoi?: NullableStringFieldUpdateOperationsInput | string | null
+    mota?: NullableStringFieldUpdateOperationsInput | string | null
+    gia?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
+    trangthai?: NullableStringFieldUpdateOperationsInput | string | null
+    hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
+    sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
+    Diadiem?: DiadiemUpdateOneWithoutGoidichvuNestedInput
+    LichtrinhCT?: LichtrinhCTUpdateManyWithoutGoidichvuNestedInput
+  }
+
+  export type GoidichvuUncheckedUpdateWithoutBookingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tengoi?: NullableStringFieldUpdateOperationsInput | string | null
+    mota?: NullableStringFieldUpdateOperationsInput | string | null
+    gia?: IntFieldUpdateOperationsInput | number
+    thoiluongngay?: NullableStringFieldUpdateOperationsInput | string | null
+    trangthai?: NullableStringFieldUpdateOperationsInput | string | null
+    hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
+    sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
+    Diadiem_id?: IntFieldUpdateOperationsInput | number
+    LichtrinhCT?: LichtrinhCTUncheckedUpdateManyWithoutGoidichvuNestedInput
+  }
+
+  export type UserUpsertWithoutBookingInput = {
+    update: XOR<UserUpdateWithoutBookingInput, UserUncheckedUpdateWithoutBookingInput>
+    create: XOR<UserCreateWithoutBookingInput, UserUncheckedCreateWithoutBookingInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBookingInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBookingInput, UserUncheckedUpdateWithoutBookingInput>
+  }
+
+  export type UserUpdateWithoutBookingInput = {
+    hoten?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    matkhau?: NullableStringFieldUpdateOperationsInput | string | null
+    sodienthoai?: NullableStringFieldUpdateOperationsInput | string | null
+    diachi?: NullableStringFieldUpdateOperationsInput | string | null
+    trangthai?: NullableStringFieldUpdateOperationsInput | string | null
+    creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
+    Role?: RoleUpdateOneWithoutUserNestedInput
+    Lichtrinh?: LichtrinhUpdateManyWithoutUserNestedInput
+    Hoadon?: HoadonUpdateManyWithoutUserNestedInput
+    Danhgia?: DanhgiaUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBookingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    matkhau?: NullableStringFieldUpdateOperationsInput | string | null
+    sodienthoai?: NullableStringFieldUpdateOperationsInput | string | null
+    diachi?: NullableStringFieldUpdateOperationsInput | string | null
+    trangthai?: NullableStringFieldUpdateOperationsInput | string | null
+    creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
+    Role_id?: IntFieldUpdateOperationsInput | number
+    Lichtrinh?: LichtrinhUncheckedUpdateManyWithoutUserNestedInput
+    Hoadon?: HoadonUncheckedUpdateManyWithoutUserNestedInput
+    Danhgia?: DanhgiaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type HoadonCreateWithoutThanhtoanInput = {
@@ -14396,9 +17642,11 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role?: RoleCreateNestedOneWithoutUserInput
     Lichtrinh?: LichtrinhCreateNestedManyWithoutUserInput
     Danhgia?: DanhgiaCreateNestedManyWithoutUserInput
+    Booking?: BookingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutHoadonInput = {
@@ -14411,9 +17659,11 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
     Role_id: number
     Lichtrinh?: LichtrinhUncheckedCreateNestedManyWithoutUserInput
     Danhgia?: DanhgiaUncheckedCreateNestedManyWithoutUserInput
+    Booking?: BookingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutHoadonInput = {
@@ -14485,9 +17735,11 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role?: RoleUpdateOneWithoutUserNestedInput
     Lichtrinh?: LichtrinhUpdateManyWithoutUserNestedInput
     Danhgia?: DanhgiaUpdateManyWithoutUserNestedInput
+    Booking?: BookingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutHoadonInput = {
@@ -14500,9 +17752,11 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Role_id?: IntFieldUpdateOperationsInput | number
     Lichtrinh?: LichtrinhUncheckedUpdateManyWithoutUserNestedInput
     Danhgia?: DanhgiaUncheckedUpdateManyWithoutUserNestedInput
+    Booking?: BookingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ThanhtoanUpsertWithoutHoadonInput = {
@@ -14583,6 +17837,17 @@ export namespace Prisma {
     Lichtrinh_id: number
   }
 
+  export type BookingCreateManyUserInput = {
+    id?: number
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    tour_id: number
+    createdAt?: Date | string
+    status?: string
+  }
+
   export type LichtrinhUpdateWithoutUserInput = {
     tenlichtrinh?: NullableStringFieldUpdateOperationsInput | string | null
     ngaytao?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14652,6 +17917,38 @@ export namespace Prisma {
     Lichtrinh_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type BookingUpdateWithoutUserInput = {
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    Goidichvu?: GoidichvuUpdateOneRequiredWithoutBookingNestedInput
+  }
+
+  export type BookingUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    tour_id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BookingUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    tour_id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
   export type UserCreateManyRoleInput = {
     id?: number
     hoten?: string | null
@@ -14662,6 +17959,7 @@ export namespace Prisma {
     trangthai?: string | null
     creatAT?: Date | string
     updateAt?: Date | string
+    isLocked?: boolean
   }
 
   export type UserUpdateWithoutRoleInput = {
@@ -14673,9 +17971,11 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Lichtrinh?: LichtrinhUpdateManyWithoutUserNestedInput
     Hoadon?: HoadonUpdateManyWithoutUserNestedInput
     Danhgia?: DanhgiaUpdateManyWithoutUserNestedInput
+    Booking?: BookingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRoleInput = {
@@ -14688,9 +17988,11 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
     Lichtrinh?: LichtrinhUncheckedUpdateManyWithoutUserNestedInput
     Hoadon?: HoadonUncheckedUpdateManyWithoutUserNestedInput
     Danhgia?: DanhgiaUncheckedUpdateManyWithoutUserNestedInput
+    Booking?: BookingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -14703,6 +18005,7 @@ export namespace Prisma {
     trangthai?: NullableStringFieldUpdateOperationsInput | string | null
     creatAT?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type HoadonCreateManyLichtrinhInput = {
@@ -14812,6 +18115,17 @@ export namespace Prisma {
     Lichtrinh_id: number
   }
 
+  export type BookingCreateManyGoidichvuInput = {
+    id?: number
+    hoten: string
+    sodienthoai: string
+    soluong: number
+    sotien: number
+    user_id?: number | null
+    createdAt?: Date | string
+    status?: string
+  }
+
   export type LichtrinhCTUpdateWithoutGoidichvuInput = {
     soluong?: IntFieldUpdateOperationsInput | number
     thanhtien?: IntFieldUpdateOperationsInput | number
@@ -14841,6 +18155,38 @@ export namespace Prisma {
     Lichtrinh_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type BookingUpdateWithoutGoidichvuInput = {
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    User?: UserUpdateOneWithoutBookingNestedInput
+  }
+
+  export type BookingUncheckedUpdateWithoutGoidichvuInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BookingUncheckedUpdateManyWithoutGoidichvuInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    hoten?: StringFieldUpdateOperationsInput | string
+    sodienthoai?: StringFieldUpdateOperationsInput | string
+    soluong?: IntFieldUpdateOperationsInput | number
+    sotien?: IntFieldUpdateOperationsInput | number
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
   export type GoidichvuCreateManyDiadiemInput = {
     id?: number
     tengoi?: string | null
@@ -14861,6 +18207,7 @@ export namespace Prisma {
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
     LichtrinhCT?: LichtrinhCTUpdateManyWithoutGoidichvuNestedInput
+    Booking?: BookingUpdateManyWithoutGoidichvuNestedInput
   }
 
   export type GoidichvuUncheckedUpdateWithoutDiadiemInput = {
@@ -14873,6 +18220,7 @@ export namespace Prisma {
     hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
     sochoconlai?: NullableIntFieldUpdateOperationsInput | number | null
     LichtrinhCT?: LichtrinhCTUncheckedUpdateManyWithoutGoidichvuNestedInput
+    Booking?: BookingUncheckedUpdateManyWithoutGoidichvuNestedInput
   }
 
   export type GoidichvuUncheckedUpdateManyWithoutDiadiemInput = {
@@ -14979,6 +18327,10 @@ export namespace Prisma {
      */
     export type DanhgiaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DanhgiaDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use BookingDefaultArgs instead
+     */
+    export type BookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BookingDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use ThanhtoanDefaultArgs instead
      */
     export type ThanhtoanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ThanhtoanDefaultArgs<ExtArgs>
@@ -14986,6 +18338,10 @@ export namespace Prisma {
      * @deprecated Use HoadonDefaultArgs instead
      */
     export type HoadonArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HoadonDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use gopyDefaultArgs instead
+     */
+    export type gopyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = gopyDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

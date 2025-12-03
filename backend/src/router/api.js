@@ -8,6 +8,9 @@ const lichtrinhController = require('../Controllers/lichtrinhController');
 const lichtrinhCTController = require('../Controllers/lichtrinhCTController');
 const thanhtoanController = require('../Controllers/thanhtoanController');
 const hoadonController = require('../Controllers/hoadonController');
+const gopyController = require('../Controllers/gopyController');
+const bookingController = require('../Controllers/bookingController');
+
 //role 
 //tạo vai trò
 router.post('/role',roleController.createRole);
@@ -23,12 +26,22 @@ router.delete('/role/:id',roleController.deleteRole);
 router.post('/user',userController.createUser);
 //đăng nhập người dùng
 router.post('/user/login',userController.loginUser);
+//lấy tất cả người dùng
+router.get('/user', userController.getUser);
 //lấy người dùng theo id
 router.get('/user/:id',userController.getUserById);
 //sửa người dùng
 router.put('/user/:id',userController.updateUser);
 //xóa người dùng
 router.delete('/user/:id',userController.deleteUser);
+//đăng xuất người dùng
+router.post('/user/logout', userController.logoutUser);
+//chuyển trạng thái người dùng active <-> inactive
+router.put('/user/toggle/:id', userController.toggleUserStatus);
+//khóa/mở khóa người dùng
+router.put('/user/lock/:id', userController.toggleLock);
+//xóa người dùng (cập nhật trạng thái thành "deleted")
+router.put("/user/:id/delete", userController.deleteUser);
 
 //địa điểm
 //tạo địa điểm
@@ -93,4 +106,24 @@ router.get('/hoadon/:id',hoadonController.getHoaDonById);
 router.put('/hoadon/:id',hoadonController.updateHoaDon);
 //xóa hóa đơn
 router.delete('/hoadon/:id',hoadonController.deleteHoaDon);
+
+//góp ý
+// tạo góp ý
+router.post("/gopy", gopyController.createGopY);
+// lấy tất cả góp ý
+router.get("/gopy", gopyController.getGopy);
+// xóa góp ý
+router.delete("/gopy/:id", gopyController.deleteGopY);
+
+//booking
+// tạo booking
+router.post("/booking", bookingController.createBooking);
+// lấy tất cả booking
+router.get("/booking", bookingController.getAllBooking);
+// lấy booking theo id
+router.get("/booking/:id", bookingController.getBookingById);
+// xác nhận booking
+router.put("/booking/confirm/:id", bookingController.confirmBooking);
+// xóa booking
+router.delete("/booking/:id", bookingController.deleteBooking);
 module.exports = router;
