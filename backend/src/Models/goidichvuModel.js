@@ -7,6 +7,7 @@ const createGoiDichVu = async (data) => {
     return await prisma.goidichvu.create({data});
 }
 
+
 //lấy tất cả gói dịch vụ
 const getAllGoiDichVu = async () => {
     return await prisma.goidichvu.findMany({
@@ -40,6 +41,7 @@ const deleteGoiDichVu = async (id) => {
         where: {id: parseInt(id)}
     });
 }
+
 
 module.exports = {
     createGoiDichVu,

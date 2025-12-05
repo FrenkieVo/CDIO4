@@ -225,6 +225,18 @@ exports.Prisma.GopyScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.NoidungScalarFieldEnum = {
+  id: 'id',
+  tieude: 'tieude',
+  hinhanh: 'hinhanh',
+  danhMuc: 'danhMuc',
+  mota: 'mota',
+  noidung: 'noidung',
+  luotXem: 'luotXem',
+  createdAt: 'createdAt',
+  trangThai: 'trangThai'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -258,7 +270,8 @@ exports.Prisma.ModelName = {
   Booking: 'Booking',
   Thanhtoan: 'Thanhtoan',
   Hoadon: 'Hoadon',
-  gopy: 'gopy'
+  gopy: 'gopy',
+  Noidung: 'Noidung'
 };
 
 /**

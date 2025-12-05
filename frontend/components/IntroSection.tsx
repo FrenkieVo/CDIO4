@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 
 const IntroSection = () => {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden mt-[90px]">
       {/* Video Background – Tự động phát, lặp, tắt tiếng */}
       <video
         autoPlay

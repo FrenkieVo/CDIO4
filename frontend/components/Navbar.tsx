@@ -42,7 +42,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 font-light">
       <div className="bg-[#d4b872] text-white">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
           <Link href="/" className="text-5xl tracking-wider italic font-thin">
             SK Telecom Travel
           </Link>
@@ -59,6 +59,14 @@ export default function Navbar() {
                   className="flex items-center gap-2 bg-red-600 px-4 py-2 rounded-lg text-white"
                 >
                   <LogOut size={18} /> Đăng xuất
+                </button>
+
+                {/* Thêm nút quản lý tài khoản */}
+                <button
+                  onClick={() => router.push("/account/profile")}
+                  className="flex items-center gap-2 bg-[#d4b872] hover:bg-[#e3c989] px-4 py-2 rounded-lg text-black font-medium transition"
+                >
+                  <User size={18} /> Quản lý tài khoản
                 </button>
               </div>
             ) : (
@@ -77,7 +85,7 @@ export default function Navbar() {
       </div>
 
       <nav className="bg-black text-white border-t border-[#d4b872]/20">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
           <ul className="hidden lg:flex items-center flex-1 uppercase tracking-widest">
             {menuItems.map((item) => (
               <li key={item.path} className="px-6">

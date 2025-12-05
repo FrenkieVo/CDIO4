@@ -68,6 +68,11 @@ export type Hoadon = $Result.DefaultSelection<Prisma.$HoadonPayload>
  * 
  */
 export type gopy = $Result.DefaultSelection<Prisma.$gopyPayload>
+/**
+ * Model Noidung
+ * 
+ */
+export type Noidung = $Result.DefaultSelection<Prisma.$NoidungPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -300,6 +305,16 @@ export class PrismaClient<
     * ```
     */
   get gopy(): Prisma.gopyDelegate<ExtArgs>;
+
+  /**
+   * `prisma.noidung`: Exposes CRUD operations for the **Noidung** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Noidungs
+    * const noidungs = await prisma.noidung.findMany()
+    * ```
+    */
+  get noidung(): Prisma.NoidungDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -787,7 +802,8 @@ export namespace Prisma {
     Booking: 'Booking',
     Thanhtoan: 'Thanhtoan',
     Hoadon: 'Hoadon',
-    gopy: 'gopy'
+    gopy: 'gopy',
+    Noidung: 'Noidung'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -804,7 +820,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'role' | 'lichtrinh' | 'lichtrinhCT' | 'goidichvu' | 'diadiem' | 'danhgia' | 'booking' | 'thanhtoan' | 'hoadon' | 'gopy'
+      modelProps: 'user' | 'role' | 'lichtrinh' | 'lichtrinhCT' | 'goidichvu' | 'diadiem' | 'danhgia' | 'booking' | 'thanhtoan' | 'hoadon' | 'gopy' | 'noidung'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1531,6 +1547,72 @@ export namespace Prisma {
           count: {
             args: Prisma.gopyCountArgs<ExtArgs>,
             result: $Utils.Optional<GopyCountAggregateOutputType> | number
+          }
+        }
+      }
+      Noidung: {
+        payload: Prisma.$NoidungPayload<ExtArgs>
+        fields: Prisma.NoidungFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NoidungFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NoidungFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload>
+          }
+          findFirst: {
+            args: Prisma.NoidungFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NoidungFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload>
+          }
+          findMany: {
+            args: Prisma.NoidungFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload>[]
+          }
+          create: {
+            args: Prisma.NoidungCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload>
+          }
+          createMany: {
+            args: Prisma.NoidungCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.NoidungDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload>
+          }
+          update: {
+            args: Prisma.NoidungUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload>
+          }
+          deleteMany: {
+            args: Prisma.NoidungDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NoidungUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.NoidungUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NoidungPayload>
+          }
+          aggregate: {
+            args: Prisma.NoidungAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateNoidung>
+          }
+          groupBy: {
+            args: Prisma.NoidungGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<NoidungGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NoidungCountArgs<ExtArgs>,
+            result: $Utils.Optional<NoidungCountAggregateOutputType> | number
           }
         }
       }
@@ -12959,6 +13041,944 @@ export namespace Prisma {
 
 
   /**
+   * Model Noidung
+   */
+
+  export type AggregateNoidung = {
+    _count: NoidungCountAggregateOutputType | null
+    _avg: NoidungAvgAggregateOutputType | null
+    _sum: NoidungSumAggregateOutputType | null
+    _min: NoidungMinAggregateOutputType | null
+    _max: NoidungMaxAggregateOutputType | null
+  }
+
+  export type NoidungAvgAggregateOutputType = {
+    id: number | null
+    luotXem: number | null
+  }
+
+  export type NoidungSumAggregateOutputType = {
+    id: number | null
+    luotXem: number | null
+  }
+
+  export type NoidungMinAggregateOutputType = {
+    id: number | null
+    tieude: string | null
+    hinhanh: string | null
+    danhMuc: string | null
+    mota: string | null
+    noidung: string | null
+    luotXem: number | null
+    createdAt: Date | null
+    trangThai: boolean | null
+  }
+
+  export type NoidungMaxAggregateOutputType = {
+    id: number | null
+    tieude: string | null
+    hinhanh: string | null
+    danhMuc: string | null
+    mota: string | null
+    noidung: string | null
+    luotXem: number | null
+    createdAt: Date | null
+    trangThai: boolean | null
+  }
+
+  export type NoidungCountAggregateOutputType = {
+    id: number
+    tieude: number
+    hinhanh: number
+    danhMuc: number
+    mota: number
+    noidung: number
+    luotXem: number
+    createdAt: number
+    trangThai: number
+    _all: number
+  }
+
+
+  export type NoidungAvgAggregateInputType = {
+    id?: true
+    luotXem?: true
+  }
+
+  export type NoidungSumAggregateInputType = {
+    id?: true
+    luotXem?: true
+  }
+
+  export type NoidungMinAggregateInputType = {
+    id?: true
+    tieude?: true
+    hinhanh?: true
+    danhMuc?: true
+    mota?: true
+    noidung?: true
+    luotXem?: true
+    createdAt?: true
+    trangThai?: true
+  }
+
+  export type NoidungMaxAggregateInputType = {
+    id?: true
+    tieude?: true
+    hinhanh?: true
+    danhMuc?: true
+    mota?: true
+    noidung?: true
+    luotXem?: true
+    createdAt?: true
+    trangThai?: true
+  }
+
+  export type NoidungCountAggregateInputType = {
+    id?: true
+    tieude?: true
+    hinhanh?: true
+    danhMuc?: true
+    mota?: true
+    noidung?: true
+    luotXem?: true
+    createdAt?: true
+    trangThai?: true
+    _all?: true
+  }
+
+  export type NoidungAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Noidung to aggregate.
+     */
+    where?: NoidungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Noidungs to fetch.
+     */
+    orderBy?: NoidungOrderByWithRelationInput | NoidungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NoidungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Noidungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Noidungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Noidungs
+    **/
+    _count?: true | NoidungCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NoidungAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NoidungSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NoidungMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NoidungMaxAggregateInputType
+  }
+
+  export type GetNoidungAggregateType<T extends NoidungAggregateArgs> = {
+        [P in keyof T & keyof AggregateNoidung]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNoidung[P]>
+      : GetScalarType<T[P], AggregateNoidung[P]>
+  }
+
+
+
+
+  export type NoidungGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NoidungWhereInput
+    orderBy?: NoidungOrderByWithAggregationInput | NoidungOrderByWithAggregationInput[]
+    by: NoidungScalarFieldEnum[] | NoidungScalarFieldEnum
+    having?: NoidungScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NoidungCountAggregateInputType | true
+    _avg?: NoidungAvgAggregateInputType
+    _sum?: NoidungSumAggregateInputType
+    _min?: NoidungMinAggregateInputType
+    _max?: NoidungMaxAggregateInputType
+  }
+
+  export type NoidungGroupByOutputType = {
+    id: number
+    tieude: string
+    hinhanh: string | null
+    danhMuc: string
+    mota: string | null
+    noidung: string | null
+    luotXem: number
+    createdAt: Date
+    trangThai: boolean
+    _count: NoidungCountAggregateOutputType | null
+    _avg: NoidungAvgAggregateOutputType | null
+    _sum: NoidungSumAggregateOutputType | null
+    _min: NoidungMinAggregateOutputType | null
+    _max: NoidungMaxAggregateOutputType | null
+  }
+
+  type GetNoidungGroupByPayload<T extends NoidungGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NoidungGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NoidungGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NoidungGroupByOutputType[P]>
+            : GetScalarType<T[P], NoidungGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NoidungSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tieude?: boolean
+    hinhanh?: boolean
+    danhMuc?: boolean
+    mota?: boolean
+    noidung?: boolean
+    luotXem?: boolean
+    createdAt?: boolean
+    trangThai?: boolean
+  }, ExtArgs["result"]["noidung"]>
+
+
+  export type NoidungSelectScalar = {
+    id?: boolean
+    tieude?: boolean
+    hinhanh?: boolean
+    danhMuc?: boolean
+    mota?: boolean
+    noidung?: boolean
+    luotXem?: boolean
+    createdAt?: boolean
+    trangThai?: boolean
+  }
+
+
+  export type $NoidungPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Noidung"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tieude: string
+      hinhanh: string | null
+      danhMuc: string
+      mota: string | null
+      noidung: string | null
+      luotXem: number
+      createdAt: Date
+      trangThai: boolean
+    }, ExtArgs["result"]["noidung"]>
+    composites: {}
+  }
+
+  type NoidungGetPayload<S extends boolean | null | undefined | NoidungDefaultArgs> = $Result.GetResult<Prisma.$NoidungPayload, S>
+
+  type NoidungCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<NoidungFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: NoidungCountAggregateInputType | true
+    }
+
+  export interface NoidungDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Noidung'], meta: { name: 'Noidung' } }
+    /**
+     * Find zero or one Noidung that matches the filter.
+     * @param {NoidungFindUniqueArgs} args - Arguments to find a Noidung
+     * @example
+     * // Get one Noidung
+     * const noidung = await prisma.noidung.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends NoidungFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, NoidungFindUniqueArgs<ExtArgs>>
+    ): Prisma__NoidungClient<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Noidung that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {NoidungFindUniqueOrThrowArgs} args - Arguments to find a Noidung
+     * @example
+     * // Get one Noidung
+     * const noidung = await prisma.noidung.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends NoidungFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, NoidungFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__NoidungClient<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Noidung that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NoidungFindFirstArgs} args - Arguments to find a Noidung
+     * @example
+     * // Get one Noidung
+     * const noidung = await prisma.noidung.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends NoidungFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, NoidungFindFirstArgs<ExtArgs>>
+    ): Prisma__NoidungClient<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Noidung that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NoidungFindFirstOrThrowArgs} args - Arguments to find a Noidung
+     * @example
+     * // Get one Noidung
+     * const noidung = await prisma.noidung.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends NoidungFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, NoidungFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__NoidungClient<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Noidungs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NoidungFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Noidungs
+     * const noidungs = await prisma.noidung.findMany()
+     * 
+     * // Get first 10 Noidungs
+     * const noidungs = await prisma.noidung.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const noidungWithIdOnly = await prisma.noidung.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends NoidungFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, NoidungFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Noidung.
+     * @param {NoidungCreateArgs} args - Arguments to create a Noidung.
+     * @example
+     * // Create one Noidung
+     * const Noidung = await prisma.noidung.create({
+     *   data: {
+     *     // ... data to create a Noidung
+     *   }
+     * })
+     * 
+    **/
+    create<T extends NoidungCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, NoidungCreateArgs<ExtArgs>>
+    ): Prisma__NoidungClient<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Noidungs.
+     * @param {NoidungCreateManyArgs} args - Arguments to create many Noidungs.
+     * @example
+     * // Create many Noidungs
+     * const noidung = await prisma.noidung.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends NoidungCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, NoidungCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Noidung.
+     * @param {NoidungDeleteArgs} args - Arguments to delete one Noidung.
+     * @example
+     * // Delete one Noidung
+     * const Noidung = await prisma.noidung.delete({
+     *   where: {
+     *     // ... filter to delete one Noidung
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends NoidungDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, NoidungDeleteArgs<ExtArgs>>
+    ): Prisma__NoidungClient<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Noidung.
+     * @param {NoidungUpdateArgs} args - Arguments to update one Noidung.
+     * @example
+     * // Update one Noidung
+     * const noidung = await prisma.noidung.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends NoidungUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, NoidungUpdateArgs<ExtArgs>>
+    ): Prisma__NoidungClient<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Noidungs.
+     * @param {NoidungDeleteManyArgs} args - Arguments to filter Noidungs to delete.
+     * @example
+     * // Delete a few Noidungs
+     * const { count } = await prisma.noidung.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends NoidungDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, NoidungDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Noidungs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NoidungUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Noidungs
+     * const noidung = await prisma.noidung.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends NoidungUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, NoidungUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Noidung.
+     * @param {NoidungUpsertArgs} args - Arguments to update or create a Noidung.
+     * @example
+     * // Update or create a Noidung
+     * const noidung = await prisma.noidung.upsert({
+     *   create: {
+     *     // ... data to create a Noidung
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Noidung we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends NoidungUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, NoidungUpsertArgs<ExtArgs>>
+    ): Prisma__NoidungClient<$Result.GetResult<Prisma.$NoidungPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Noidungs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NoidungCountArgs} args - Arguments to filter Noidungs to count.
+     * @example
+     * // Count the number of Noidungs
+     * const count = await prisma.noidung.count({
+     *   where: {
+     *     // ... the filter for the Noidungs we want to count
+     *   }
+     * })
+    **/
+    count<T extends NoidungCountArgs>(
+      args?: Subset<T, NoidungCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NoidungCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Noidung.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NoidungAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NoidungAggregateArgs>(args: Subset<T, NoidungAggregateArgs>): Prisma.PrismaPromise<GetNoidungAggregateType<T>>
+
+    /**
+     * Group by Noidung.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NoidungGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NoidungGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NoidungGroupByArgs['orderBy'] }
+        : { orderBy?: NoidungGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NoidungGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNoidungGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Noidung model
+   */
+  readonly fields: NoidungFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Noidung.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NoidungClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Noidung model
+   */ 
+  interface NoidungFieldRefs {
+    readonly id: FieldRef<"Noidung", 'Int'>
+    readonly tieude: FieldRef<"Noidung", 'String'>
+    readonly hinhanh: FieldRef<"Noidung", 'String'>
+    readonly danhMuc: FieldRef<"Noidung", 'String'>
+    readonly mota: FieldRef<"Noidung", 'String'>
+    readonly noidung: FieldRef<"Noidung", 'String'>
+    readonly luotXem: FieldRef<"Noidung", 'Int'>
+    readonly createdAt: FieldRef<"Noidung", 'DateTime'>
+    readonly trangThai: FieldRef<"Noidung", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Noidung findUnique
+   */
+  export type NoidungFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * Filter, which Noidung to fetch.
+     */
+    where: NoidungWhereUniqueInput
+  }
+
+  /**
+   * Noidung findUniqueOrThrow
+   */
+  export type NoidungFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * Filter, which Noidung to fetch.
+     */
+    where: NoidungWhereUniqueInput
+  }
+
+  /**
+   * Noidung findFirst
+   */
+  export type NoidungFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * Filter, which Noidung to fetch.
+     */
+    where?: NoidungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Noidungs to fetch.
+     */
+    orderBy?: NoidungOrderByWithRelationInput | NoidungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Noidungs.
+     */
+    cursor?: NoidungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Noidungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Noidungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Noidungs.
+     */
+    distinct?: NoidungScalarFieldEnum | NoidungScalarFieldEnum[]
+  }
+
+  /**
+   * Noidung findFirstOrThrow
+   */
+  export type NoidungFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * Filter, which Noidung to fetch.
+     */
+    where?: NoidungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Noidungs to fetch.
+     */
+    orderBy?: NoidungOrderByWithRelationInput | NoidungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Noidungs.
+     */
+    cursor?: NoidungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Noidungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Noidungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Noidungs.
+     */
+    distinct?: NoidungScalarFieldEnum | NoidungScalarFieldEnum[]
+  }
+
+  /**
+   * Noidung findMany
+   */
+  export type NoidungFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * Filter, which Noidungs to fetch.
+     */
+    where?: NoidungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Noidungs to fetch.
+     */
+    orderBy?: NoidungOrderByWithRelationInput | NoidungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Noidungs.
+     */
+    cursor?: NoidungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Noidungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Noidungs.
+     */
+    skip?: number
+    distinct?: NoidungScalarFieldEnum | NoidungScalarFieldEnum[]
+  }
+
+  /**
+   * Noidung create
+   */
+  export type NoidungCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Noidung.
+     */
+    data: XOR<NoidungCreateInput, NoidungUncheckedCreateInput>
+  }
+
+  /**
+   * Noidung createMany
+   */
+  export type NoidungCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Noidungs.
+     */
+    data: NoidungCreateManyInput | NoidungCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Noidung update
+   */
+  export type NoidungUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Noidung.
+     */
+    data: XOR<NoidungUpdateInput, NoidungUncheckedUpdateInput>
+    /**
+     * Choose, which Noidung to update.
+     */
+    where: NoidungWhereUniqueInput
+  }
+
+  /**
+   * Noidung updateMany
+   */
+  export type NoidungUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Noidungs.
+     */
+    data: XOR<NoidungUpdateManyMutationInput, NoidungUncheckedUpdateManyInput>
+    /**
+     * Filter which Noidungs to update
+     */
+    where?: NoidungWhereInput
+  }
+
+  /**
+   * Noidung upsert
+   */
+  export type NoidungUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Noidung to update in case it exists.
+     */
+    where: NoidungWhereUniqueInput
+    /**
+     * In case the Noidung found by the `where` argument doesn't exist, create a new Noidung with this data.
+     */
+    create: XOR<NoidungCreateInput, NoidungUncheckedCreateInput>
+    /**
+     * In case the Noidung was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NoidungUpdateInput, NoidungUncheckedUpdateInput>
+  }
+
+  /**
+   * Noidung delete
+   */
+  export type NoidungDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+    /**
+     * Filter which Noidung to delete.
+     */
+    where: NoidungWhereUniqueInput
+  }
+
+  /**
+   * Noidung deleteMany
+   */
+  export type NoidungDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Noidungs to delete
+     */
+    where?: NoidungWhereInput
+  }
+
+  /**
+   * Noidung without action
+   */
+  export type NoidungDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Noidung
+     */
+    select?: NoidungSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -13109,6 +14129,21 @@ export namespace Prisma {
   };
 
   export type GopyScalarFieldEnum = (typeof GopyScalarFieldEnum)[keyof typeof GopyScalarFieldEnum]
+
+
+  export const NoidungScalarFieldEnum: {
+    id: 'id',
+    tieude: 'tieude',
+    hinhanh: 'hinhanh',
+    danhMuc: 'danhMuc',
+    mota: 'mota',
+    noidung: 'noidung',
+    luotXem: 'luotXem',
+    createdAt: 'createdAt',
+    trangThai: 'trangThai'
+  };
+
+  export type NoidungScalarFieldEnum = (typeof NoidungScalarFieldEnum)[keyof typeof NoidungScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -13950,6 +14985,80 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"gopy"> | Date | string
   }
 
+  export type NoidungWhereInput = {
+    AND?: NoidungWhereInput | NoidungWhereInput[]
+    OR?: NoidungWhereInput[]
+    NOT?: NoidungWhereInput | NoidungWhereInput[]
+    id?: IntFilter<"Noidung"> | number
+    tieude?: StringFilter<"Noidung"> | string
+    hinhanh?: StringNullableFilter<"Noidung"> | string | null
+    danhMuc?: StringFilter<"Noidung"> | string
+    mota?: StringNullableFilter<"Noidung"> | string | null
+    noidung?: StringNullableFilter<"Noidung"> | string | null
+    luotXem?: IntFilter<"Noidung"> | number
+    createdAt?: DateTimeFilter<"Noidung"> | Date | string
+    trangThai?: BoolFilter<"Noidung"> | boolean
+  }
+
+  export type NoidungOrderByWithRelationInput = {
+    id?: SortOrder
+    tieude?: SortOrder
+    hinhanh?: SortOrderInput | SortOrder
+    danhMuc?: SortOrder
+    mota?: SortOrderInput | SortOrder
+    noidung?: SortOrderInput | SortOrder
+    luotXem?: SortOrder
+    createdAt?: SortOrder
+    trangThai?: SortOrder
+  }
+
+  export type NoidungWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: NoidungWhereInput | NoidungWhereInput[]
+    OR?: NoidungWhereInput[]
+    NOT?: NoidungWhereInput | NoidungWhereInput[]
+    tieude?: StringFilter<"Noidung"> | string
+    hinhanh?: StringNullableFilter<"Noidung"> | string | null
+    danhMuc?: StringFilter<"Noidung"> | string
+    mota?: StringNullableFilter<"Noidung"> | string | null
+    noidung?: StringNullableFilter<"Noidung"> | string | null
+    luotXem?: IntFilter<"Noidung"> | number
+    createdAt?: DateTimeFilter<"Noidung"> | Date | string
+    trangThai?: BoolFilter<"Noidung"> | boolean
+  }, "id">
+
+  export type NoidungOrderByWithAggregationInput = {
+    id?: SortOrder
+    tieude?: SortOrder
+    hinhanh?: SortOrderInput | SortOrder
+    danhMuc?: SortOrder
+    mota?: SortOrderInput | SortOrder
+    noidung?: SortOrderInput | SortOrder
+    luotXem?: SortOrder
+    createdAt?: SortOrder
+    trangThai?: SortOrder
+    _count?: NoidungCountOrderByAggregateInput
+    _avg?: NoidungAvgOrderByAggregateInput
+    _max?: NoidungMaxOrderByAggregateInput
+    _min?: NoidungMinOrderByAggregateInput
+    _sum?: NoidungSumOrderByAggregateInput
+  }
+
+  export type NoidungScalarWhereWithAggregatesInput = {
+    AND?: NoidungScalarWhereWithAggregatesInput | NoidungScalarWhereWithAggregatesInput[]
+    OR?: NoidungScalarWhereWithAggregatesInput[]
+    NOT?: NoidungScalarWhereWithAggregatesInput | NoidungScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Noidung"> | number
+    tieude?: StringWithAggregatesFilter<"Noidung"> | string
+    hinhanh?: StringNullableWithAggregatesFilter<"Noidung"> | string | null
+    danhMuc?: StringWithAggregatesFilter<"Noidung"> | string
+    mota?: StringNullableWithAggregatesFilter<"Noidung"> | string | null
+    noidung?: StringNullableWithAggregatesFilter<"Noidung"> | string | null
+    luotXem?: IntWithAggregatesFilter<"Noidung"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Noidung"> | Date | string
+    trangThai?: BoolWithAggregatesFilter<"Noidung"> | boolean
+  }
+
   export type UserCreateInput = {
     hoten?: string | null
     email?: string | null
@@ -14693,6 +15802,87 @@ export namespace Prisma {
     danhgiachitiet?: NullableJsonNullValueInput | InputJsonValue
     gopythem?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NoidungCreateInput = {
+    tieude: string
+    hinhanh?: string | null
+    danhMuc: string
+    mota?: string | null
+    noidung?: string | null
+    luotXem?: number
+    createdAt?: Date | string
+    trangThai?: boolean
+  }
+
+  export type NoidungUncheckedCreateInput = {
+    id?: number
+    tieude: string
+    hinhanh?: string | null
+    danhMuc: string
+    mota?: string | null
+    noidung?: string | null
+    luotXem?: number
+    createdAt?: Date | string
+    trangThai?: boolean
+  }
+
+  export type NoidungUpdateInput = {
+    tieude?: StringFieldUpdateOperationsInput | string
+    hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
+    danhMuc?: StringFieldUpdateOperationsInput | string
+    mota?: NullableStringFieldUpdateOperationsInput | string | null
+    noidung?: NullableStringFieldUpdateOperationsInput | string | null
+    luotXem?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trangThai?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type NoidungUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tieude?: StringFieldUpdateOperationsInput | string
+    hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
+    danhMuc?: StringFieldUpdateOperationsInput | string
+    mota?: NullableStringFieldUpdateOperationsInput | string | null
+    noidung?: NullableStringFieldUpdateOperationsInput | string | null
+    luotXem?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trangThai?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type NoidungCreateManyInput = {
+    id?: number
+    tieude: string
+    hinhanh?: string | null
+    danhMuc: string
+    mota?: string | null
+    noidung?: string | null
+    luotXem?: number
+    createdAt?: Date | string
+    trangThai?: boolean
+  }
+
+  export type NoidungUpdateManyMutationInput = {
+    tieude?: StringFieldUpdateOperationsInput | string
+    hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
+    danhMuc?: StringFieldUpdateOperationsInput | string
+    mota?: NullableStringFieldUpdateOperationsInput | string | null
+    noidung?: NullableStringFieldUpdateOperationsInput | string | null
+    luotXem?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trangThai?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type NoidungUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tieude?: StringFieldUpdateOperationsInput | string
+    hinhanh?: NullableStringFieldUpdateOperationsInput | string | null
+    danhMuc?: StringFieldUpdateOperationsInput | string
+    mota?: NullableStringFieldUpdateOperationsInput | string | null
+    noidung?: NullableStringFieldUpdateOperationsInput | string | null
+    luotXem?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trangThai?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -15475,6 +16665,52 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedJsonNullableFilter<$PrismaModel>
     _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type NoidungCountOrderByAggregateInput = {
+    id?: SortOrder
+    tieude?: SortOrder
+    hinhanh?: SortOrder
+    danhMuc?: SortOrder
+    mota?: SortOrder
+    noidung?: SortOrder
+    luotXem?: SortOrder
+    createdAt?: SortOrder
+    trangThai?: SortOrder
+  }
+
+  export type NoidungAvgOrderByAggregateInput = {
+    id?: SortOrder
+    luotXem?: SortOrder
+  }
+
+  export type NoidungMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tieude?: SortOrder
+    hinhanh?: SortOrder
+    danhMuc?: SortOrder
+    mota?: SortOrder
+    noidung?: SortOrder
+    luotXem?: SortOrder
+    createdAt?: SortOrder
+    trangThai?: SortOrder
+  }
+
+  export type NoidungMinOrderByAggregateInput = {
+    id?: SortOrder
+    tieude?: SortOrder
+    hinhanh?: SortOrder
+    danhMuc?: SortOrder
+    mota?: SortOrder
+    noidung?: SortOrder
+    luotXem?: SortOrder
+    createdAt?: SortOrder
+    trangThai?: SortOrder
+  }
+
+  export type NoidungSumOrderByAggregateInput = {
+    id?: SortOrder
+    luotXem?: SortOrder
   }
 
   export type RoleCreateNestedOneWithoutUserInput = {
@@ -18342,6 +19578,10 @@ export namespace Prisma {
      * @deprecated Use gopyDefaultArgs instead
      */
     export type gopyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = gopyDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use NoidungDefaultArgs instead
+     */
+    export type NoidungArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = NoidungDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

@@ -152,3 +152,15 @@ model gopy {
 
   createdAt DateTime @default(now())
 }
+
+model Noidung {
+  id        Int      @id @default(autoincrement())
+  tieude    String
+  hinhanh   String?
+  danhMuc   String // "dich-vu" / "review" / "tin-tuc" / "luu-tru" / "kinh-nghiem"
+  mota      String? // mô tả ngắn
+  noidung   String?  @db.LongText
+  luotXem   Int      @default(0)
+  createdAt DateTime @default(now())
+  trangThai Boolean  @default(true)
+}

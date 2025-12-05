@@ -1,11 +1,31 @@
 const bookingModel = require("../Models/bookingModel");
+const goiDichVuModel = require("../Models/goidichvuModel");
 
 const createBooking = async (req, res) => {
     try {
         const data = req.body;
+        // 1. Lấy tour để kiểm tra số chỗ còn lại
+        const tour = await goiDichVuModel.getGoiDichVuById(data.tour_id);
+        if (!tour) return res.status(404).json({ message: "Tour không tồn tại" });
+
+        // 2. Nếu hết chỗ → không cho đặt
+        if (tour.sochoconlai < data.soluong) {
+        return res.status(400).json({
+            message: `Chỉ còn ${tour.sochoconlai} chỗ, không đặt được ${data.soluong} chỗ`
+        });
+        }
+
         const result = await bookingModel.createBooking(data);
-        res.status(201).json(result);
-    } catch (err) {
+
+        let newRemain = tour.sochoconlai - parseInt(data.soluong);
+            if (newRemain < 0) newRemain = 0;
+
+            await goiDichVuModel.updateGoiDichVu(data.tour_id, {
+                sochoconlai: newRemain
+            });
+
+            res.status(201).json(result);
+        } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Booking thất bại", error: err });
     }
@@ -51,12 +71,25 @@ const deleteBooking = async (req, res) => {
     }
 };
 
+//lấy lịch theo tour của user
+const getBookingByUser = async (req, res) => {
+  try {
+    const user_id = parseInt(req.params.user_id);
+    const bookings = await bookingModel.getBookingByUser(user_id);
+
+    res.json(bookings);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Lỗi lấy lịch đặt tour", error: err });
+  }
+};
 
 module.exports = { 
     createBooking, 
     getAllBooking ,
     confirmBooking,
     deleteBooking,
-    getBookingById
+    getBookingById,
+    getBookingByUser
 };
 

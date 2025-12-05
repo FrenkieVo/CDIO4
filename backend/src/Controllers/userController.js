@@ -135,11 +135,17 @@ const getUser = async (req,res) => {
 
 //sửa người dùng
 const updateUser = async (req,res) => {
-    const id = parseInt(req.params.id);
-    const data = req.body;
-    const user = await userModel.updateUser(id,data);
-    res.json(user); 
-}
+  const id = parseInt(req.params.id);
+  const data = req.body;
+
+  await userModel.updateUser(id, data);
+
+  // Lấy full user mới sau update (include Role)
+  const updated = await userModel.getUserById(id);
+
+  res.json(updated);
+};
+
 //hàm xóa người dùng
 const deleteUser = async (req, res) => {
     const id = parseInt(req.params.id);

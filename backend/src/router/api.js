@@ -10,6 +10,7 @@ const thanhtoanController = require('../Controllers/thanhtoanController');
 const hoadonController = require('../Controllers/hoadonController');
 const gopyController = require('../Controllers/gopyController');
 const bookingController = require('../Controllers/bookingController');
+const noiDungController = require("../Controllers/noidungController");
 
 //role 
 //tạo vai trò
@@ -126,4 +127,17 @@ router.get("/booking/:id", bookingController.getBookingById);
 router.put("/booking/confirm/:id", bookingController.confirmBooking);
 // xóa booking
 router.delete("/booking/:id", bookingController.deleteBooking);
+//lịch theo tour user
+router.get("/booking/user/:user_id", bookingController.getBookingByUser);
+
+//noidung
+router.post("/noidung",noiDungController.upload,noiDungController.noidungcreate);
+router.get("/noidung", noiDungController.noidunggetAll);
+router.get("/noidung/danhmuc/:slug", noiDungController.noidunggetByDanhMuc);
+router.get("/noidung/:id", noiDungController.noidunggetDetail);
+router.delete("/noidung/:id",noiDungController.upload, noiDungController.noidungdelete);
+// ảnh chi tiết
+router.post("/noidung/upload-inline", noiDungController.uploadInline);
+//update
+router.put("/noidung/:id", noiDungController.upload, noiDungController.noidungupdate);
 module.exports = router;

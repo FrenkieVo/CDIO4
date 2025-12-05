@@ -43,6 +43,7 @@ export default function ServiceTravelPage() {
           price: g.giaFormat,
           duration: formatDuration(g.thoiluongngay),
           spots: g.Diadiem?.tendiadiem || "Không có địa điểm khác",
+          sochoconlai: g.sochoconlai, 
           image: g.hinhanh ? `http://localhost:3000/${JSON.parse(g.hinhanh)[0]}` : "/default.jpg",
           hot: g.trangthai === "active", // active -> HOT
         }));
@@ -161,24 +162,32 @@ export default function ServiceTravelPage() {
                     </h3>
 
                     <div className="space-y-3 text-gray-600">
+
                       <div className="flex items-center gap-3">
                         <Clock className="w-5 h-5 text-[#d4b872]" />
                         <span>{tour.duration}</span>
                       </div>
 
-                      <div className="flex items-center gap-3">
-                        <MapPin className="w-5 h-5 text-[#d4b872]" />
-                        <span className="text-sm">{tour.spots}</span>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <MapPin className="w-5 h-5 text-[#d4b872]" />
+                          <span className="text-sm">{tour.spots}</span>
+                        </div>
+
+                        <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+                          Còn lại: {tour.sochoconlai}
+                        </span>
                       </div>
+
                     </div>
 
-                    <div className="mt-6 flex items-center justify-between">
-                      <div>
-                        <span className="text-3xl font-bold text-[#d4b872]">{tour.price}</span>
-                        <span className="text-sm text-gray-500 ml-2">/khách</span>
+                    <div className="mt-6 flex items-center justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <span className="text-3xl font-bold text-[#d4b872] break-words">{tour.price}</span>
+                        <span className="text-sm text-gray-500 ml-2 whitespace-nowrap">/khách</span>
                       </div>
 
-                      <span className="bg-[#d4b872]/10 text-[#d4b872] px-5 py-2 rounded-full font-bold text-sm">
+                      <span className="bg-[#d4b872]/10 text-[#d4b872] px-5 py-2 rounded-full font-bold text-sm whitespace-nowrap flex-shrink-0">
                         Xem chi tiết →
                       </span>
                     </div>

@@ -51,10 +51,27 @@ const getBookingById = async (id) => {
     });
 };
 
+const getBookingByUser = async (user_id) => {
+  return await prisma.booking.findMany({
+    where: { user_id: Number(user_id) },
+    include: {
+      Goidichvu: {
+        include: {
+          Diadiem: true
+        }
+      },
+      User: true
+    },
+    orderBy: { createdAt: "desc" }
+  });
+};
+
+
 module.exports = {
     createBooking,
     getAllBooking,
     deleteBooking,
     updateBooking,
-    getBookingById
+    getBookingById,
+    getBookingByUser
 };

@@ -68,7 +68,7 @@ export default function RegisterPage() {
         hoten: dangky.hoten,
         email: dangky.email,
         matkhau: dangky.password,
-        Role_id:3
+        Role_id:2
       }
       console.log("data gửi đi",data);
       Api.post('/user', data)

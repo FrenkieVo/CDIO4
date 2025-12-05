@@ -19,7 +19,7 @@ const createUser = async (data) => {
     });
 }
 //lấy thông tin người dùng 
-const getUser = async (id) => {
+const getUser = async () => {
     return await prisma.user.findMany({
         include:{
             Role: true
@@ -34,7 +34,6 @@ const getUserById = async (id) => {
             id: true,
             hoten: true,
             email: true,
-            matkhau: true,
             sodienthoai: true,
             diachi: true,
             trangthai: true,
@@ -44,12 +43,25 @@ const getUserById = async (id) => {
     })
 }
 //sửa thông tin vai trò
-const updateUser = async (id,data) => {
-    return await prisma.user.update({
-        where: {id},
-        data
-    })
-}
+const updateUser = async (id, data) => {
+  return await prisma.user.update({
+    where: { id: Number(id) },
+    data: {
+      hoten: data.hoten,
+      email: data.email,
+      sodienthoai: data.sodienthoai,
+      diachi: data.diachi,
+      trangthai: data.trangthai,
+      isLocked: data.isLocked,
+      ...(data.Role_id && {
+        Role: {
+          connect: { id: Number(data.Role_id) }
+        }
+      })
+    }
+  });
+};
+
 //xoa user
 const deleteUser = async (id) => {
     return await prisma.user.update({

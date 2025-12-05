@@ -124,7 +124,7 @@ export default function EditGoiDichVu() {
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
       
-      <div className="relative w-[750px] rounded-3xl overflow-hidden shadow-2xl border border-white/40 bg-white/95 backdrop-blur-lg">
+      <div className="relative w-[750px] max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl border border-white/40 bg-white/95 backdrop-blur-lg">
 
         {/* Background giống trang thêm */}
         <div
@@ -168,8 +168,7 @@ export default function EditGoiDichVu() {
                   <label className="font-semibold">Ảnh hiện tại</label>
                   <img
                     src={`http://localhost:3000/${JSON.parse(form.oldhinhanh)[0]}`}
-                    className="w-40 rounded-lg shadow-md mt-2"
-
+                    className="w-full max-h-60 object-contain rounded-lg shadow-md mt-2"
                   />
                 </div>
               )}

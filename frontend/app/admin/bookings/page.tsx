@@ -9,6 +9,7 @@ export default function BookingsManagement() {
   const router = useRouter();
 
   const [packages, setPackages] = useState<any[]>([]);
+  const [preview, setPreview] = useState<any>(null);
 
   function formatDuration(str: string) {
     // Dạng 3n2d → 2 ngày 3 đêm
@@ -108,11 +109,21 @@ export default function BookingsManagement() {
                   <MapPin className="w-5 h-5" />
                   <span>{pkg.Diadiem?.tendiadiem ?? "Không có địa điểm"}</span>
                 </div>
+
+                <div className="flex items-center gap-3">
+                <Users className="w-5 h-5 text-green-600" />
+                <span className="font-semibold text-green-600">
+                  Còn lại: {pkg.sochoconlai ?? 0} chỗ
+                </span>
+              </div>
               </div>
 
               {/* Buttons */}
               <div className="flex gap-3">
-                <button className="flex-1 bg-gray-100 hover:bg-gray-200 py-3 rounded-lg flex items-center justify-center gap-2 font-medium">
+                <button
+                  className="flex-1 bg-gray-100 hover:bg-gray-200 py-3 rounded-lg flex items-center justify-center gap-2 font-medium"
+                  onClick={() => setPreview(pkg)}
+                >
                   <Eye className="w-5 h-5" /> Xem
                 </button>
 
@@ -137,6 +148,58 @@ export default function BookingsManagement() {
           </div>
         ))}
       </div>
+      {preview && (
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center p-6 z-50">
+          
+          <div className="bg-white w-[55%] max-h-[90vh] overflow-y-auto rounded-xl shadow-xl p-6 relative">
+
+            {/* nút đóng */}
+            <button
+              className="absolute top-3 right-4 text-red-500 text-xl"
+              onClick={() => setPreview(null)}
+            >
+              ✖
+            </button>
+
+            {/* ảnh */}
+            {preview.hinhanh && (
+              <img
+                src={`http://localhost:3000/${JSON.parse(preview.hinhanh)[0]}`}
+                className="w-full h-64 object-cover rounded-lg shadow mb-4"
+              />
+            )}
+
+            <h2 className="text-3xl font-bold mb-2">{preview.tengoi}</h2>
+            <p className="text-gray-600 mb-3">{preview.Diadiem?.tendiadiem}</p>
+
+            <div className="border-t mb-4"></div>
+
+            <p><strong>📍 Địa điểm:</strong> {preview.Diadiem?.tendiadiem}</p>
+            <p><strong>📅 Thời lượng:</strong> {formatDuration(preview.thoiluongngay)}</p>
+            <p><strong>👥 Số chỗ còn lại:</strong> {preview.sochoconlai}</p>
+            <p><strong>💰 Giá:</strong> {Number(preview.gia).toLocaleString()}đ</p>
+            <p><strong>🔥 Trạng thái:</strong> 
+              {preview.trangthai === "active" ? " Đang mở" : " Đã đóng"}
+            </p>
+
+            <div className="border-t my-4"></div>
+
+            <h3 className="font-semibold mb-2">📸 Danh sách hình ảnh</h3>
+            <div className="grid grid-cols-3 gap-3">
+              {preview.hinhanh && JSON.parse(preview.hinhanh).map((img: string, i:number) => (
+                <img
+                  key={i}
+                  src={`http://localhost:3000/${img}`}
+                  className="w-full h-28 object-cover rounded-lg border"
+                />
+              ))}
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
     </div>
   );
 }
